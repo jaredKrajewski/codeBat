@@ -1,3 +1,3 @@
-# codeBat
-codebat coding problems solved in Javascript
+# codingBat
+codingBat coding problems solved in Javascript
  
