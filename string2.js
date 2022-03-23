@@ -95,4 +95,50 @@ function endOther(strA, strB) {
   }
   
   console.log(endOther("abc", "abXabc"));
+
+  /*
+Return true if the given string contains an appearance of "xyz" where the xyz is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not.
+
+xyzThere("abcxyz") → true
+xyzThere("abc.xyz") → false
+xyzThere("xyz.abc") → true
+*/
+
+function xyzThere(str) {
+    let answer = false;
+    for (let i = 0; i < str.length; i++) {
+      if (str.substr(i, 3) === "xyz" && str.substr(i - 1, 1) !== ".") {
+        answer = true;
+      }
+    }
+    return answer;
+  }
+  console.log(xyzThere("abc.xyz"));
   
+/*
+Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
+
+bobThere("abcbob") → true
+bobThere("b9b") → true
+bobThere("bac") → false
+*/
+
+function bobThere(str) {
+    for (let i = 0; i < str.length; i++) {
+      if (str.substr(i, 1) === "b" && str.substr(i + 2, 1) === "b") {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  console.log(bobThere("b9b"));
+  
+/*
+We'll say that a String is xy-balanced if for all the 'x' chars in the string, there exists a 'y' char somewhere later in the string. So "xxy" is balanced, but "xyx" is not. One 'y' can balance multiple 'x's. Return true if the given string is xy-balanced.
+
+xyBalance("aaxbby") → true
+xyBalance("aaxbb") → false
+xyBalance("yaaxbb") → false
+*/
+
