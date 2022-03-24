@@ -142,3 +142,71 @@ xyBalance("aaxbb") → false
 xyBalance("yaaxbb") → false
 */
 
+function xyBalance(str) {
+  let xIndex;
+  let yIndex;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str.substr(i, 1) == "x") {
+      xIndex = i;
+    }
+    if (str.substr(i, 1) == "y") {
+      yIndex = i;
+    }
+  }
+  return xIndex < yIndex ? true : false;
+}
+
+console.log(xyBalance("yaaxbb"));
+
+/*
+Given two strings, a and b, create a bigger string made of the first char of a, the first char of b, the second char of a, the second char of b, and so on. Any leftover chars go at the end of the result.
+
+mixString("abc", "xyz") → "axbycz"
+mixString("Hi", "There") → "HTihere"
+mixString("xxxx", "There") → "xTxhxexre"
+*/
+
+function mixString(strA, strB) {
+  let length = Math.max(strA.length, strB.length);
+  let word = "";
+  for (let i = 0; i < length; i++) {
+    word += strA.charAt(i) + strB.charAt(i);
+  }
+  return word;
+}
+
+console.log(mixString("hi", "There"));
+
+/*
+Given a string and an int n, return a string made of n repetitions of the last n characters of the string. You may assume that n is between 0 and the length of the string, inclusive.
+
+repeatEnd("Hello", 3) → "llollollo"
+repeatEnd("Hello", 2) → "lolo"
+repeatEnd("Hello", 1) → "o"
+*/
+
+function repeatEnd(str, n) {
+  return str.substr(-n).repeat(n);
+}
+console.log(repeatEnd("Hello", 3));
+
+/*
+Given a string and an int n, return a string made of the first n characters of the string, followed by the first n-1 characters of the string, and so on. You may assume that n is between 0 and the length of the string, inclusive (i.e. n >= 0 and n <= str.length()).
+
+repeatFront("Chocolate", 4) → "ChocChoChC"
+repeatFront("Chocolate", 3) → "ChoChC"
+repeatFront("Ice Cream", 2) → "IcI"
+*/
+
+function repeatFront(str, n) {
+  let word = "";
+  for (let i = n; i > 0; i--) {
+    word += str.substr(0, i);
+  }
+
+  return word;
+}
+console.log(repeatFront("Chocolate", 4));
+
+
