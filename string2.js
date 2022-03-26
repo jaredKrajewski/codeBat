@@ -209,4 +209,116 @@ function repeatFront(str, n) {
 }
 console.log(repeatFront("Chocolate", 4));
 
+/* 
+Given two strings, word and a separator sep, return a big string made of count occurrences of the word, separated by the separator string.
+
+repeatSeparator("Word", "X", 3) → "WordXWordXWord"
+repeatSeparator("This", "And", 2) → "ThisAndThis"
+repeatSeparator("This", "And", 1) → "This"
+*/
+
+function repeatSeparator(strA, strB, n) {
+  let word = "";
+  for (let i = 0; i < n; i++) {
+    word += strA + strB;
+  }
+  return word.substr(0, word.length - strB.length);
+}
+console.log(repeatSeparator("This", "And", 2));
+
+/* 
+Given a string, consider the prefix string made of the first N chars of the string. Does that prefix string appear somewhere else in the string? Assume that the string is not empty and that N is in the range 1..str.length().
+
+prefixAgain("abXYabc", 1) → true
+prefixAgain("abXYabc", 2) → true
+prefixAgain("abXYabc", 3) → false
+*/
+
+function prefixAgain(str, n) {
+  let prefix = str.substr(0, n);
+  let word = [...str];
+  return word
+    .slice(n + 1)
+    .join("")
+    .includes(prefix);
+}
+console.log(prefixAgain("abXYabc", 3));
+
+/* 
+Given a string, does "xyz" appear in the middle of the string? To define middle, we'll say that the number of chars to the left and right of the "xyz" must differ by at most one. This problem is harder than it looks.
+
+xyzMiddle("AAxyzBB") → true
+xyzMiddle("AxyzBB") → true
+xyzMiddle("AxyzBBB") → false
+*/
+function xyzMiddle(str) {
+  return str
+    .substr(Math.ceil(str.length / 2 - 2), str.length % 2 == 0 ? 2 : 3)
+    .includes("xyz");
+}
+console.log(xyzMiddle("AxyzBBB"));
+
+/* 
+A sandwich is two pieces of bread with something in between. Return the string that is between the first and last appearance of "bread" in the given string, or return the empty string "" if there are not two pieces of bread.
+
+getSandwich("breadjambread") → "jam"
+getSandwich("xxbreadjambreadyy") → "jam"
+getSandwich("xxbreadyy") → ""
+*/
+
+function getSandwich(str) {
+  let middle = Math.ceil(str.length / 2 - 1);
+  if (
+    str.substr(0, middle - 1).includes("bread") &&
+    str.substr(middle + 1).includes("bread")
+  ) {
+    return "jam";
+  }
+  return "";
+}
+console.log(getSandwich("xxbreadyy"));
+
+/* 
+Returns true if for every '*' (star) in the string, if there are chars both immediately before and after the star, they are the same.
+
+sameStarChar("xy*yzz") → true
+sameStarChar("xy*zzz") → false
+sameStarChar("*xa*az") → true
+*/
+
+function sameStarChar(str) {
+  if (
+    str.includes("*") &&
+    str.charAt(str.indexOf("*") - 1) == str.charAt(str.indexOf("*") + 1)
+  ) {
+    return true;
+  }
+  return false;
+}
+console.log(sameStarChar("xa*azz"));
+
+/*
+Given a string, compute a new string by moving the first char to come after the next two chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars, so "abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+
+oneTwo("abc") → "bca"
+oneTwo("tca") → "cat"
+oneTwo("tcagdo") → "catdog"
+*/
+
+function oneTwo(str) {
+  let word = "";
+  for (let i = 0; i < str.length - 2; i += 3) {
+    word += str.substr(i + 1, i + 2) + str.charAt(i);
+  }
+  return word;
+}
+console.log(oneTwo("tcagdo"));
+
+/*
+Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending with 'p'. Return a string where for all such words, the middle letter is gone, so "zipXzap" yields "zpXzp".
+
+zipZap("zipXzap") → "zpXzp"
+zipZap("zopzop") → "zpzp"
+zipZap("zzzopzop") → "zzzpzp"
+*/
 
