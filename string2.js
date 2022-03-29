@@ -322,3 +322,91 @@ zipZap("zopzop") → "zpzp"
 zipZap("zzzopzop") → "zzzpzp"
 */
 
+function zipZap(str) {
+  let word = str.split("");
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] == "z" && word[i + 2] == "p") {
+      word.splice(i + 1, 1);
+    }
+  }
+
+  return word.join("");
+}
+
+console.log(zipZap("zipXzap"));
+
+/* 
+Return a version of the given string, where for every star (*) in the string the star and the chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also yields "ad".
+
+starOut("ab*cd") → "ad"
+starOut("ab**cd") → "ad"
+starOut("sm*eilly") → "silly"
+*/
+
+function starOut(str) {
+  let word = str.split("");
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === "*" && word[i + 1] === "*") {
+      word.splice(i - 1, 4);
+    }
+    if (word[i] === "*") {
+      word.splice(i - 1, 3);
+    }
+  }
+  return word.join("");
+}
+
+console.log(starOut("sm*eilly"));
+
+/* 
+Given a string and a non-empty word string, return a version of the original String where all chars have been replaced by pluses ("+"), except for appearances of the word string which are preserved unchanged.
+
+plusOut("12xy34", "xy") → "++xy++"
+plusOut("12xy34", "1") → "1+++++"
+plusOut("12xy34xyabcxy", "xy") → "++xy++xy+++xy"
+*/
+
+function plusOut(strA, strB) {
+  let string = "";
+  for (let i = 0; i < strA.length; ) {
+    if (strA.substr(i).startsWith(strB)) {
+      string += strB;
+      i += strB.length;
+    } else {
+      string += "+";
+      i++;
+    }
+  }
+
+  return string;
+}
+console.log(plusOut("12xy34xyabcxy", "xy"));
+
+/* 
+Given a string and a non-empty word string, return a string made of each char just before and just after every appearance of the word in the string. Ignore cases where there is no char before or after the word, and a char may be included twice if it is between two words.
+
+wordEnds("abcXY123XYijk", "XY") → "c13i"
+wordEnds("XY123XY", "XY") → "13"
+wordEnds("XY1XY", "XY") → "11"
+*/
+
+function wordEnds(strA, strB) {
+  let string = "";
+  if (strA.startsWith(strB)) {
+    string += strA.charAt(strB.length);
+  }
+
+  for (let i = 1; i < strA.length - strB.length; ) {
+    if (strA.substr(i).startsWith(strB)) {
+      string += strA.charAt(i - 1) + strA.charAt(i + strB.length);
+      i += strB.length;
+    }
+    i++;
+  }
+
+  if (strA.endsWith(strB)) {
+    string += strA.charAt(strA.length - strB.length - 1);
+  }
+  return string;
+}
+console.log(wordEnds("abcXY123XYijk", "XY"));
