@@ -194,4 +194,102 @@ function stringMatch(a, b) {
   
   console.log(stringMatch("xxcaazz", "xxbaaz"));
 
+  /*
+Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end should not be removed.
+
+stringX("xxHxix") → "xHix"
+stringX("abxxxcd") → "abcd"
+stringX("xabxxxcdx") → "xabcdx"
+*/
+
+  function stringX(str) {
+    let string = [...str];
+    for (let i = 1; i < string.length - 1; i++) {
+      if (string[i] === "x") {
+        string.splice(i, 1);
+        i--;
+      }
+    }
   
+    return string.join("");
+  }
+  console.log(stringX("xxHxix"));
+  
+/*
+Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
+
+altPairs("kitten") → "kien"
+altPairs("Chocolate") → "Chole"
+altPairs("CodingHorror") → "Congrr"
+*/
+
+function altPairs(str) {
+  let string = "";
+
+  for (let i = 0; i < str.length; i++) {
+    string += str[i];
+    if (i % 2 != 0) i += 2;
+  }
+
+  return string;
+}
+
+console.log(altPairs("CodingHorror"));
+
+/*
+Suppose the string "yak" is unlucky. Given a string, return a version where all the "yak" are removed, but the "a" can be any char. The "yak" strings will not overlap.
+
+stringYak("yakpak") → "pak"
+stringYak("pakyak") → "pak"
+stringYak("yak123ya") → "123ya"
+*/
+
+function stringYak(str) {
+  let string = str.split("");
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] == "y" && string[i + 2] == "k") {
+      string.splice(i, 3);
+    }
+  }
+  return string.join("");
+}
+
+console.log(stringYak("yak123ya"));
+
+/*
+Given an array of ints, return the number of times that two 6's are next to each other in the array. Also count instances where the second "6" is actually a 7.
+
+array667([6, 6, 2]) → 1
+array667([6, 6, 2, 6]) → 1
+array667([6, 7, 2, 6]) → 1
+*/
+
+function array667(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if ((arr[i] == 6 && arr[i + 1] === 6) || arr[i + 1] === 7) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(array667([6, 7, 2, 6]));
+
+/*
+Given an array of ints, we'll say that a triple is a value appearing 3 times in a row in the array. Return true if the array does not contain any triples.
+
+noTriples([1, 1, 2, 2, 1]) → true
+noTriples([1, 1, 2, 2, 2, 1]) → false
+noTriples([1, 1, 1, 2, 2, 2, 1]) → false
+*/
+
+function noTriples(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i + 1] && arr[i] === arr[i + 2]) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(noTriples([1, 1, 1, 2, 2, 2, 1]));
+
