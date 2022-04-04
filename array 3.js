@@ -63,3 +63,20 @@ fix45([5, 4, 9, 4, 9, 5]) → [9, 4, 5, 4, 5, 9]
 fix45([1, 4, 1, 5]) → [1, 4, 5, 1]
 fix45([1, 4, 1, 5, 5, 4, 1]) → [1, 4, 5, 1, 1, 4, 5]
 */ 
+
+function fix45(arr) {
+  let nums;
+  let five;
+
+  arr.forEach((num, index) => {
+    if (num == 4 && index + 1 != 5) {
+      arr.splice(index + 1, 1, 5);
+    }
+    if (num == 5) {
+      //  arr.splice(index, 1, nums)
+    }
+    arr.forEach((n, i) => {});
+  });
+  return arr;
+}
+console.log(fix45([5, 4, 9, 4, 9, 5]));

@@ -1,12 +1,5 @@
-/*When squirrels get together for a party, they like to have cigars. 
-A squirrel party is successful when the number of cigars is between 40 and 60,
- inclusive. Unless it is the weekend, in which case there is no upper bound on 
- the number of cigars. Return true if the party with the given values is successful, or false otherwise. 
-cigarParty(30, false) → false
-cigarParty(50, false) → true
-cigarParty(70, true) → true */
-
-/* Goal: check true/false if number is between 40 & 60 unless it is the weekend where number minimum of 40 is required only
+/*
+Goal: check true/false if number is between 40 & 60 unless it is the weekend where number minimum of 40 is required only
 Params: number, boolean (n, bool)
 Return value: true/false
 Logic: 
@@ -16,17 +9,25 @@ Logic:
     - return true
   - otherwise
     - return false
-  */
-    function cigarParty(cigars, weekend) {
-        if (cigars >= 40 && cigars <= 60) {
-          return true;
-        } else if ((cigars >= 40 && weekend == true)) {
-          return true;
-        }
-      }
-      return false;
-      
-      console.log(cigarParty(70, true));
+
+When squirrels get together for a party, they like to have cigars. 
+A squirrel party is successful when the number of cigars is between 40 and 60,
+ inclusive. Unless it is the weekend, in which case there is no upper bound on 
+ the number of cigars. Return true if the party with the given values is successful, or false otherwise. 
+
+cigarParty(30, false) → false
+cigarParty(50, false) → true
+cigarParty(70, true) → true 
+*/
+
+function cigarParty(cigars, weekend) {
+  if (cigars >= 40 && (cigars > 60 || weekend)) {
+    return true;
+  } 
+  return false;
+}
+console.log(cigarParty(70, true));
+
 
 /* You and your date are trying to get a table at a restaurant. The parameter "you" is the stylishness of
  your clothes, in the range 0..10, and "date" is the stylishness of your date's clothes.
