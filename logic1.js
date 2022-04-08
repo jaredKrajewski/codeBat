@@ -3,9 +3,7 @@ Goal: check true/false if number is between 40 & 60 unless it is the weekend whe
 Params: number, boolean (n, bool)
 Return value: true/false
 Logic: 
-  - If cigars between 40 & 60
-    - return true
-  - If cigars greater than 40 and weekend is true 
+  - If cigars >= 40 And cigars greater than 60 or its the weekend
     - return true
   - otherwise
     - return false
@@ -26,6 +24,8 @@ function cigarParty(cigars, weekend) {
   } 
   return false;
 }
+console.log(cigarParty(30, false));
+console.log(cigarParty(50, false));
 console.log(cigarParty(70, true));
 
 
@@ -37,9 +37,9 @@ console.log(cigarParty(70, true));
   Otherwise the result is 1 (maybe).
 dateFashion(5, 10) → 2
 dateFashion(5, 2) → 0
-dateFashion(5, 5) → 1 */ 
+dateFashion(5, 5) → 1 
 
-/* Goal: determine on a score 0 = no, 1 = maybe, 2 = yes if you will get a table
+Goal: determine on a score 0 = no, 1 = maybe, 2 = yes if you will get a table
 Params: your style, dates style (0-10) (you, date)
 Return value: 0-2 as int
 Logi:
@@ -70,34 +70,25 @@ return true if the squirrels play and false otherwise.
 squirrelPlay(70, false) → true
 squirrelPlay(95, false) → false
 squirrelPlay(95, true) → true
-*/
-/* 
+ 
 Goal: taking in temperature(60-90 inclusive or 100 during summer)  determine boolean is squirrels play
 Params: temp, isSummer(boolean)
 Return Val: true/false
 Logic: 
-if - temp 60-90 
-   - return true
-if - temp >90 && isSummer = false
-   - return false
-if - temp <= 100 && isSummer = true 
-   - return true
+if temp > 60 and temp <= 100 && summer or temp < 90
+return true
+otherwise return false;
 */
 
 
 function squirrelPlay(temp, isSummer){
-  if(temp >= 60 && temp <= 90){
-    return true
-  } else if (temp >= 90 && isSummer == false){
-    return false
-    } else if (temp <= 100 && isSummer == true){
+  if (temp > 60 && (temp <= 100 && isSummer) || temp < 90){
     return true
   }
-  return false
-}
+   return false;
+ }
+ console.log(squirrelPlay(70, false));
 
-
-console.log(squirrelPlay(95, true))
 
 /*
 Goal: 0 = no ticket, 1 = small ticket, 2 = big ticket. If speed is < 60 result = 0, if speed >60 & < 80 result = 1, if speed is > 81 result is 2. in cases of birthday speed is allowed to be 5 higher.
@@ -148,13 +139,10 @@ sortaSum(10, 11) → 21
 
 function sortaSum(a, b) {
   let total = a + b;
-  if (total > 9 && total < 19) {
-    return 20;
-  }
-  return total;
+  return total > 9 && total < 19 ? 20 : total;
 }
 
-console.log(sortaSum(10, 14));
+console.log(sortaSum(9, 4));
 
 /*
 Goal:given a day of the week 0=sun...6=sat, and boolean for vacation return a string in form "0:00" for alarm time. alarm is 7 on weekdays and 10 on weekend unless vacation then weekdays is 10 and weekends is off
@@ -172,21 +160,17 @@ alarmClock(0, false) → "10:00"
 */
 
 function alarmClock(day, vacation) {
-  if ((vacation == false && day == 0) || day == 6) {
-    return "10:00";
-  }
-  if (vacation == false && day > 0 && day < 6) {
+  if (!vacation && day != 0 && day != 6) {
     return "7:00";
   }
-  if ((vacation == true && day == 0) || day == 6) {
-    return "off";
-  }
-  if (vacation == true && day > 0 && day < 6) {
+  if ((day == 0 || day == 6) && !vacation) {
     return "10:00";
   }
+
+  return "off";
 }
 
-console.log(alarmClock(1, false));
+console.log(alarmClock(5, false));
 
 /*
 Goal:return true if a or b is 6, if their sum is 6, or the difference is 6
@@ -209,19 +193,13 @@ love6(1, 5) → true
 */
 
 function love6(a, b) {
-  if (a + b === 6) {
-    return true;
-  }
-  if (a === 6 || b === 6) {
-    return true;
-  }
-  if (Math.abs(a - b == 6) || Math.abs(b - a === 6)) {
+  if (Math.abs(a + b) == 6 || Math.abs(a, b) == 6 || a == 6 || b == 6) {
     return true;
   }
   return false;
 }
 
-console.log(love6(1, 7));
+console.log(love6(1, 5));
 
 /*
 Goal: return true if n is in the range 1-10, unless outsideMode is true, then return true if the number is less or equal to 1 or greater than 10
