@@ -1,13 +1,15 @@
-/*
-Goal:take array and return true if first or last in array is 6
-Params: array: arr
-Return Val: boolean
-Logic if first index or last index is = to 6
-return true
-otherwise 
-return false
+// CodingBat.com array1 challenged solved in javascript.
 
-Given an array of ints, return true if 6 appears as either the first or last element in the array. The array will be length 1 or more.
+/*
+Goal:take array and return true if first or last in array is 6;
+Params: array: arr;
+Return Val: boolean;
+Logic if first index or last index is = to 6;
+return true;
+otherwise return false;
+
+Given an array of ints, return true if 6 appears as either the first or 
+last element in the array. The array will be length 1 or more.
 
 firstLast6([1, 2, 6]) → true
 firstLast6([6, 1, 2, 3]) → true
@@ -23,15 +25,24 @@ function firstLast6(arr) {
   
   console.log(firstLast6([1, 6, 2, 26]));
 
+// or 
+
+function firstLast6(arr){
+  return arr[0] == 6 || arr[arr.length-1] == 6
+}
+console.log(firstLast6([13, 6, 1, 2, 3]))
+
+//////////////////////////////////////////////////////////
+
 /*
-Goal: take array and return true if the array is longer than 1 and the first and last numbers are euqal
-Params: arr
-Return Val: boolean
+Goal: take array and return true if the array is longer than 1 and
+ the first and last numbers are euqal;
+Params: arr;
+Return Val: boolean;
 Logic: 
-if arry is > 1 and the first and last index are identical
-return true
-otherwise
-return false
+if arry is > 1 and the first and last index are identical;
+return true;
+otherwise return false;
 
 Given an array of ints, return true if the array is length 1 or more, and the first element and the last element are equal.
 
@@ -49,12 +60,20 @@ function sameFirstLast(arr) {
   
   console.log(sameFirstLast([1, 2, 3, 1]));
 
+  // or 
+
+  function sameFirstLast(arr){
+    return arr.length > 1 && arr[0] === arr[arr.length - 1] 
+   }
+   console.log(sameFirstLast([1, 2, 3]))
+
+ //////////////////////////////////////////////////////////
+
 /*
-Goal: make an array with first 3 digits of pi
-Params: none    
-Return Val: array length 3
-Logic: return array with 3,1,4
-return arr with first 3 digits of array containing PI
+Goal: make an array with first 3 digits of pi;
+Params: none    ;
+Return Val: array length 3;
+Logic: return array with 3,1,4;
 
 Return an int array length 3 containing the first 3 digits of pi, {3, 1, 4}.
 
@@ -67,19 +86,23 @@ function makePi() {
   
   console.log(makePi());
 
-  /*
-Goal:take 2 arrays, return true if they have the same first or last element
-Params: array1: a; array2: b;
-Return Val:boolean 
-Logic: 
-if index 0 of array1 and index 0 of array 2 are equal 
-return true
-if last index of array1 and last index of array2 are equal 
-return true
-otherwise 
-return false
+  //////////////////////////////////////////////////////////
 
-Given 2 arrays of ints, a and b, return true if they have the same first element or they have the same last element. Both arrays will be length 1 or more.
+/*
+Goal:take 2 arrays, return true if they have the same first or last 
+element;
+Params: array1: a; array2: b;
+Return Val: boolean ;
+Logic: 
+if index 0 of array1 and index 0 of array 2 are equal ;
+return true;
+if last index of array1 and last index of array2 are equal ;
+return true;
+otherwise return false;
+
+Given 2 arrays of ints, a and b, return true if they have the same first
+ element or they have the same last element. 
+ Both arrays will be length 1 or more.
 
 commonEnd([1, 2, 3], [7, 3]) → true
 commonEnd([1, 2, 3], [7, 3, 2]) → false
@@ -87,23 +110,35 @@ commonEnd([1, 2, 3], [1, 3]) → true
 */
 
 function commonEnd(a, b) {
-    if (a[0] === b[0]) {
-      return true;
-    }
-    if (a[a.length - 1] === b[b.length - 1]) {
-      return true;
-    }
-    return false;
+  if (a[0] === b[0]) {
+    return true;
   }
-  
-  console.log(commonEnd([1, 2, 3], [1, 3]));
+  if (a[a.length - 1] === b[b.length - 1]) {
+    return true;
+  }
+  return false;
+}
 
-  /*
-Goal:take an array with 3 numbers and return the total sum
-Params: array: a
-Return Val: int = sum
+console.log(commonEnd([1, 2, 3], [1, 3]));
+
+// or 
+function commonEnd(a, b) {
+  return a[0] === b[0] 
+    || a[a.length - 1] === b[b.length - 1]
+    ? true 
+    : false;
+}
+
+console.log(commonEnd([1, 2, 3], [1, 3]));
+
+  //////////////////////////////////////////////////////////
+
+/*
+Goal:take an array with 3 numbers and return the total sum;
+Params: array: a;
+Return Val: int;
 Logic:
-loop over array and return sum of all numbers
+loop over array and return sum of all numbers;
 
 Given an array of ints length 3, return the sum of all the elements.
 
@@ -119,14 +154,25 @@ function sum3(a) {
   }
   console.log(sum3([5, 11, 2]));
 
-/*
-Goal:take an array of 3 ints and return them with the first digit rotated to the end;
-Params: array: a;
-Return Val: array rotated left 
-Logic: add first array element to the end and remove it from the front
-return the array
+  // or 
 
-Given an array of ints length 3, return an array with the elements "rotated left" so {1, 2, 3} yields {2, 3, 1}.
+  function sum3(a) {
+    return a.reduce((b,c) => b + c)
+   }
+   console.log(sum3([5, 11, 2]));
+
+    //////////////////////////////////////////////////////////
+
+/*
+Goal:take an array of 3 ints and return them with the first digit rotated 
+to the end;
+Params: array: a;
+Return Val: array rotated left;
+Logic: add first array element to the end and remove it from the front
+return the array;
+
+Given an array of ints length 3, return an array with the elements
+ "rotated left" so {1, 2, 3} yields {2, 3, 1}.
 
 rotateLeft3([1, 2, 3]) → [2, 3, 1]
 rotateLeft3([5, 11, 9]) → [11, 9, 5]
@@ -142,13 +188,16 @@ function rotateLeft3(a) {
   
   console.log(rotateLeft3([5, 11, 9]));
 
-  /*
-Goal:return an array reversed 
-Params: array: a
-Return Val: reversed array
-Logic: reverse the array
+  //////////////////////////////////////////////////////////
+  
+/*
+Goal:return an array reversed ;
+Params: array: a;
+Return Val: reversed array;
+Logic: reverse the array;
 
-Given an array of ints length 3, return a new array with the elements in reverse order, so {1, 2, 3} becomes {3, 2, 1}.
+Given an array of ints length 3, return a new array with the elements 
+in reverse order, so {1, 2, 3} becomes {3, 2, 1}.
 
 reverse3([1, 2, 3]) → [3, 2, 1]
 reverse3([5, 11, 9]) → [9, 11, 5]
@@ -156,21 +205,25 @@ reverse3([7, 0, 0]) → [0, 0, 7]
 */
 
 function reverse3(a){
-    a.reverse()
-    return a
+   return a.reverse()
   }
   
   console.log(reverse3([5, 11, 9]))
 
+  //////////////////////////////////////////////////////////
+
  /*
-Goal: take an array and see if the first or last element is larger. return array of same length with that number
-Params: array: a
-Return Val: modified array
+Goal: take an array and see if the first or last element is larger.
+ return array of same length with that number;
+Params: array: a;
+Return Val: array;
 Logic:
-find larger number at first or last index and return array of same length with that number
+find larger number at first or last index and replace each index with
+the larger number;
 
-Given an array of ints length 3, figure out which is larger, the first or last element in the array, and set all the other elements to be that value. Return the changed array.
-
+Given an array of ints length 3, figure out which is larger, the first 
+or last element in the array, and set all the other elements to be that 
+value. Return the changed array.
 
 maxEnd3([1, 2, 3]) → [3, 3, 3]
 maxEnd3([11, 5, 9]) → [11, 11, 11]
@@ -178,23 +231,41 @@ maxEnd3([2, 11, 3]) → [3, 3, 3]
 */
 
 function maxEnd3(a) {
-    let max = Math.max(a[0], a[a.length - 1]);
-    return [max, max, max];
-  }
-  
-  console.log(maxEnd3([11, 5, 9]));
+  let max = Math.max(a[0], a[a.length - 1]);
+  a[0] = max;
+  a[1] = max;
+  a[2] = max;
+ return a
+}
+
+console.log(maxEnd3([11, 5, 9]));
+
+// or 
+
+function maxEnd3(a) {
+  let max = Math.max(a[0], a[a.length - 1]);
+  a.splice(0, 3, max, max, max);
+  return a;
+}
+
+console.log(maxEnd3([11, 5, 9]));
+
+//////////////////////////////////////////////////////////
 
 /*
-Goal:return sum of first 2 array elements. if length is less than 2 sum whatever exists. if array is zero return 0
-Params: array 
-Return Val: int
+Goal:return sum of first 2 array elements. if length is less than 2 sum 
+whatever exists. if array is zero return 0;
+Params: array ;
+Return Val: int;
 Logic: 
-return sum of first 2 ints in array
+return sum of first 2 ints in array;
 if array length is 0;
 return 0;
-if array length is <2 return sum of array
+if array length is <2 return sum of array;
 
-Given an array of ints, return the sum of the first 2 elements in the array. If the array length is less than 2, just sum up the elements that exist, returning 0 if the array is length 0.
+Given an array of ints, return the sum of the first 2 elements in the 
+array. If the array length is less than 2, just sum up the elements 
+that exist, returning 0 if the array is length 0.
 
 sum2([1, 2, 3]) → 3
 sum2([1, 1]) → 2
@@ -213,14 +284,31 @@ function sum2(a) {
   
   console.log(sum2([1, 1, 1, 1]));
   
-/*
-Goal: take 2 arrays and return an array with both middle elements
-Params: array1: a; array2: b;
-return val: array
-Logic: 
-make array and push middle elements into new array
+  // or 
 
-Given 2 int arrays, a and b, each length 3, return a new array length 2 containing their middle elements.
+  function sum2(a) {
+    let total = 0;
+    return a.reduce((a, b, i) => {
+      while (i <= 1) {
+        return a + b;
+      }
+      return a;
+    });
+  }
+  console.log(sum2([1, 4, 5]));
+
+  //////////////////////////////////////////////////////////
+
+
+/*
+Goal: take 2 arrays and return an array with both middle elements;
+Params: array1: a; array2: b;
+return val: array;
+Logic: 
+make array and push middle elements into new array;
+
+Given 2 int arrays, a and b, each length 3, return a new array length 2
+containing their middle elements.
 
 middleWay([1, 2, 3], [4, 5, 6]) → [2, 5]
 middleWay([7, 7, 7], [3, 8, 0]) → [7, 8]
@@ -235,15 +323,31 @@ function middleWay(a, b) {
   
   console.log(middleWay([7, 7, 7], [3, 8, 0]));
 
-  /*
-Goal: return new array with first and last elements from original array  
-Params: array: a
-Return Val: array
-Logic: create new array
-push first number and last number to new array
-return array
+  // or 
 
-Given an array of ints, return a new array length 2 containing the first and last elements from the original array. The original array will be length 1 or more.
+  function middleWay(a, b) {
+    let result = 
+        [a[Math.floor(a.length / 2 + 1)],
+         b[Math.floor(b.length / 2 + 1)]
+        ];
+    return result
+  }
+ 
+  console.log(middleWay([7, 7, 7], [3, 8, 0]));
+
+  //////////////////////////////////////////////////////////
+
+  /*
+Goal: return new array with first and last elements from original array; 
+Params: array: a;
+Return Val: array;
+Logic: create new array;
+push first number and last number to new array;
+return array;
+
+Given an array of ints, return a new array length 2 containing the first
+and last elements from the original array. The original array will
+be length 1 or more.
 
 makeEnds([1, 2, 3]) → [1, 3]
 makeEnds([1, 2, 3, 4]) → [1, 4]
@@ -257,14 +361,16 @@ function makeEnds(a){
   }
   console.log(makeEnds([1, 2, 3]))
 
+  //////////////////////////////////////////////////////////
+
   /*
-Goal: return true if array contains a 2 or a 3
-Params: array: a
-Return Val: boolean 
+Goal: return true if array contains a 2 or a 3;
+Params: array: a;
+Return Val: boolean ;
 Logic: 
-if array index 0 is 2 or 3 or index 1 is 2 or 3
-return true
-otherwise return false
+if array index 0 is 2 or 3 or index 1 is 2 or 3;
+return true;
+otherwise return false;
 
 Given an int array length 2, return true if it contains a 2 or a 3.
 
@@ -281,13 +387,39 @@ function has23(a){
   }
   console.log(has23([4, 5]));
 
+  // or 
+
+  function has23(a) {
+    let answer = false;
+    a.includes(2)
+      ? (answer = true)
+      : a.includes(3)
+      ? (answer = true)
+      : (answer = false);
+    return answer;
+  }
+  console.log(has23([4,3]));
+
+  // or 
+
+  function has23(a) {
+    if (a.includes(2) || a.includes(3)) {
+      return true;
+    }
+    return false;
+  }
+  console.log(has23([4, 5]));
+  
+
+  //////////////////////////////////////////////////////////
+
   /*
-Goal:return true if array does not contain a 2 or 3
-Params: array: a
-Return Val: boolean
-Logic: if index 0 and index 1 are not equal to 2 or 3
-return true
-otherwise return false
+Goal:return true if array does not contain a 2 or 3;
+Params: array: a;
+Return Val: boolean;
+Logic: if index 0 and index 1 are not equal to 2 or 3;
+return true;
+otherwise return false;
 
 Given an int array length 2, return true if it does not contain a 2 or 3.
 
@@ -304,17 +436,33 @@ function no23(a) {
   }
   
   console.log(no23([5, 5]));
+  
+  // or 
+
+  function no23(a) {
+    if (!a.includes(2) && !a.includes(3)) {
+      return true;
+    }
+    return false;
+  }
+  console.log(no23([3, 5]));
+  
+  //////////////////////////////////////////////////////////
 
 /*
-Goal: return an array double the length filled with zeroes except the last digit remains the same.
-Params: array: a
-Return Val: array
+Goal: return an array double the length filled with zeroes except the
+ last digit remains the same;
+Params: array: a;
+Return Val: array;
 Logic: 
-double the array and minus itself to zero out.
-loop over array and push results to new array
-remove last zeroed digit and replace with original end digit
+double the array and minus itself to zero out;
+loop over array and push results to new array;
+remove last zeroed digit and replace with original end digit;
 
-Given an int array, return a new array with double the length where its last element is the same as the original array, and all the other elements are 0. The original array will be length 1 or more. Note: by default, a new int array contains all 0's.
+Given an int array, return a new array with double the length where its 
+last element is the same as the original array, and all the other 
+elements are 0. The original array will be length 1 or more. 
+Note: by default, a new int array contains all 0's.
 
 makeLast([4, 5, 6]) → [0, 0, 0, 0, 0, 6]
 makeLast([1, 2]) → [0, 0, 0, 2]
