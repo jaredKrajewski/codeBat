@@ -467,16 +467,26 @@ function lastChars(a, b) {
 
 console.log(lastChars("", "chars"));
 
-/*
-Goal:take two words and combine them, if a charachter is doubled(cc) during concatination omit one of the duplicates
-Params: a: string 1, b: string 2
-return Val: string
-Logic: 
-if: a strings last char is the same as b strings first char 
-return: string a + string b starting at its 2nd char
-otherwise: return string a and b
+// or 
 
-Given two strings, append them together (known as "concatenation") and return the result. However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
+function lastChars(a, b) {
+  if (a.length === 0){
+    a = '@';
+  } if (b.length === 0){
+    b = '@'
+  }
+   return a.substr(0,1) + b.substr(0,1)
+ }
+ 
+ console.log(lastChars("hi", ""));
+
+ //////////////////////////////////////////////////////////
+
+/*
+Given two strings, append them together (known as "concatenation") 
+and return the result. However, if the concatenation creates a
+double-char, then omit one of the chars, so "abc" and "cat" 
+yields "abcat";
 
 conCat("abc", "cat") → "abcat"
 conCat("dog", "cat") → "dogcat"
@@ -492,39 +502,31 @@ function conCat(a, b) {
 
 console.log(conCat("abc", "efg"));
 
-/*
-Goal:take a string and return a string where the last 2 are reversed if there are enough chars
-params:string: a
-Return val: string of reversed letters
-Logic: 
-if: the string is less than 2 letters return false
-otherwise:return the string minues the last two letters, add back the last, add back the first
+//////////////////////////////////////////////////////////
 
-Given a string of any length, return a new string where the last 2 chars, if present, are swapped, so "coding" yields "codign".
+/*
+Given a string of any length, return a new string where the last 2 
+chars, if present, are swapped, so "coding" yields "codign";
 
 lastTwo("coding") → "codign"
 lastTwo("cat") → "cta"
 lastTwo("ab") → "ba"
 */
 
-function lastTwo(a){
-  if (a.length < 2){
-    return false;
-  } 
-  return a.substr(0,a.length - 2) + a.substr(a.length-1,1) + a.substr(a.length -2, 1)
+function lastTwo(a) {
+  return a.substr(0, a.length - 2) + a.substr(-2)
+    .split("")
+    .reverse()
+    .join("");
 }
 
-console.log(lastTwo("a"))
+console.log(lastTwo("cat"));
+
+//////////////////////////////////////////////////////////
 
 /*
-Goaltake a string and if it begins with red or blue return the word or return an empty string
-Params: string: a
-Return Val: string
-Logic: 
-if: string begins with "red" return "red"
-otherwise: if string begins with "blue" return "blue"
-
-Given a string, if the string begins with "red" or "blue" return that color string, otherwise return the empty string.
+Given a string, if the string begins with "red" or "blue" return 
+that color string, otherwise return the empty string;
 
 seeColor("redxx") → "red"
 seeColor("xxred") → ""
@@ -543,16 +545,24 @@ function seeColor(a) {
 
 console.log(seeColor("bluexxxred"));
 
-/*
-Goal:take a string if return true if the first 2 letters end the string
-Params: string : a
-Return Val: boolean
-Logic: 
-if: first two letters are equal to last two letters 
-return true
-otherwise return false
+// or 
 
-Given a string, return true if the first 2 chars in the string also appear at the end of the string, such as with "edited".
+function seeColor(a) {
+  if (a.startsWith("red")){
+    return "red"
+  } if (a.startsWith("blue")){
+    return "blue"
+  }
+  return ""
+}
+
+console.log(seeColor("bluexxxred"));
+
+//////////////////////////////////////////////////////////
+
+/*
+Given a string, return true if the first 2 chars in the string also 
+appear at the end of the string, such as with "edited";
 
 frontAgain("edited") → true
 frontAgain("edit") → false
@@ -560,7 +570,7 @@ frontAgain("ed") → true
 */
 
 function frontAgain(a) {
-  if (a.substr(0, 2) === a.substr(a.length - 2, 2)) {
+  if (a.substr(0, 2) === a.substr(-2)) {
     return true;
   }
   return false;
@@ -568,22 +578,22 @@ function frontAgain(a) {
 
 console.log(frontAgain("ed"));
 
+// or 
+
+function frontAgain(a) {
+  return a.substr(0, 2) === a.substr(-2)
+ }
+ 
+ console.log(frontAgain("edited"));
+
+//////////////////////////////////////////////////////////
+
 /*
-Goal: if one string is longer than the other cut it to the same length.
-otherwise take 2 strings, combine them, return that result. 
-Params:
-  string a: a;
-  string b: b;
-
-Return Val:string
-Logic:
-if: string a is longer than string b
-return: string a to the length of b + string b
-else if: string a is shorter than string b
-return: string a + string b to length of string a
-
-
-Given two strings, append them together (known as "concatenation") and return the result. However, if the strings are different lengths, omit chars from the longer string so it is the same length as the shorter string. So "Hello" and "Hi" yield "loHi". The strings may be any length.
+Given two strings, append them together (known as "concatenation") 
+and return the result. However, if the strings are different lengths,
+omit chars from the longer string so it is the same length as the
+shorter string. So "Hello" and "Hi" yield "loHi". The strings
+may be any length;
 
 minCat("Hello", "Hi") → "loHi"
 minCat("Hello", "java") → "ellojava"
@@ -602,15 +612,22 @@ function minCat(a, b) {
 
 console.log(minCat("java", "Hello"));
 
-/*
-Goal: take a word, return a new word made of 3 copies of the first 2 chars. if less than 2 use anything else x3
-Params: string: a
-Return Val: string of 3x first 2 chars or 3x first char
-Logic:
-if: string is longer than 1 char return first 2 chars x3
-otherwise return 1st char 3 times
+// or 
 
-Given a string, return a new string made of 3 copies of the first 2 chars of the original string. The string may be any length. If there are fewer than 2 chars, use whatever is there.
+function minCat(a, b) {
+  return a.length > b.length
+    ? a.substr(a.length - b.length) + b
+    : a + b.substr(b.length - a.length);
+}
+
+console.log(minCat("java", "Hello"));
+
+//////////////////////////////////////////////////////////
+
+/*
+Given a string, return a new string made of 3 copies of the first 2 
+chars of the original string. The string may be any length.
+ If there are fewer than 2 chars, use whatever is there;
 
 extraFront("Hello") → "HeHeHe"
 extraFront("ab") → "ababab"
@@ -618,23 +635,18 @@ extraFront("H") → "HHH"
 */
 
 function extraFront(a) {
-  if (a.length > 1) {
-    return a.substr(0, 2).repeat(3);
-  }
-  return a.substr(0).repeat(3);
+  return a.substr(0, 2).repeat(3);
 }
 
-console.log(extraFront("H"));
+console.log(extraFront("Hello"));
+
+//////////////////////////////////////////////////////////
 
 /*
-Goal: take a string if the first two and last two charsets are the same return a string without the first set.
-Params: string 
-Return Val: string
-Logic:
-if: string chars at 0 and 1st index are same as second to last and last return a string witout the first two indexes 
-otherwise: return the string
-
-Given a string, if a length 2 substring appears at both its beginning and end, return a string without the substring at the beginning, so "HelloHe" yields "lloHe". The substring may overlap with itself, so "Hi" yields "". Otherwise, return the original string unchanged.
+Given a string, if a length 2 substring appears at both its beginning
+and end, return a string without the substring at the beginning,
+so "HelloHe" yields "lloHe". The substring may overlap with itself,
+so "Hi" yields "". Otherwise, return the original string unchanged;
 
 without2("HelloHe") → "lloHe"
 without2("HelloHi") → "HelloHi"
@@ -642,23 +654,19 @@ without2("Hi") → ""
 */
 
 function without2(a) {
-  if (a.substr(0, 2) === a.substr(a.length - 2, 2)) {
-    return a.substr(2);
-  }
-  return a;
+  return a.substr(0, 2) === a.substr(-2) 
+    ? a.substr(2) 
+    : a;
 }
 
-console.log(without2("He"));
+console.log(without2("HelloHe"));
+
+//////////////////////////////////////////////////////////
 
 /*
-Goal: take a string and return it without its first 2 letters. keep the first one if it is 'a' and the second one if its 'b'
-Params: string: a
-Return Val: string without first 2 
-Logic: 
-if: letter at index one is b keep it and return the string, if the first letter is "a" keep it and return the rest of the string
-otherwise: return the string without the first two letters
-
-Given a string, return a version without the first 2 chars. Except keep the first char if it is 'a' and keep the second char if it is 'b'. The string may be any length.
+Given a string, return a version without the first 2 chars. 
+Except keep the first char if it is 'a' and keep the second char if
+it is 'b'. The string may be any length;
 
 deFront("Hello") → "llo"
 deFront("java") → "va"
@@ -678,8 +686,15 @@ function deFront(a) {
 
 console.log(deFront("away"));
 
+//////////////////////////////////////////////////////////
+
 /*
-Given a string and a second "word" string, we'll say that the word matches the string if it appears at the front of the string, except its first char does not need to match exactly. On a match, return the front of the string, or otherwise return the empty string. So, so with the string "hippo" the word "hi" returns "hi" and "xip" returns "hip". The word will be at least length 1.
+Given a string and a second "word" string, we'll say that the word
+matches the string if it appears at the front of the string,
+except its first char does not need to match exactly.
+On a match, return the front of the string, or otherwise return the
+empty string. So, so with the string "hippo" the word "hi" returns 
+"hi" and "xip" returns "hip". The word will be at least length 1;
 
 startWord("hippo", "hi") → "hi"
 startWord("hippo", "xip") → "hip"
@@ -695,17 +710,22 @@ function startWord(a, b) {
 
 console.log(startWord("hippo", "hi"));
 
-/*
-Goal:take a string and if first and last chars are "x" return without both "x", otherwise return the string unchanged
-Params:string: a
-Return Val: string
-Logic:
-if string first char is equal to x and string last char is equal to x
-return the string minus its first and last chars
-if string first char is x remove
-otherwise return the string
+// or 
 
-Given a string, if the first or last chars are 'x', return the string without those 'x' chars, and otherwise return the string unchanged.
+function startWord(a, b) {
+  if (a.substr(1, b.length - 1) === b.substr(1, b.length - 1)) {
+    return a.substr(0, b.length);
+  }
+  return "";
+}
+
+console.log(startWord("hippo", "hi"));
+
+//////////////////////////////////////////////////////////
+
+/*
+Given a string, if the first or last chars are 'x', return the string
+without those 'x' chars, and otherwise return the string unchanged;
 
 withoutX("xHix") → "Hi"
 withoutX("xHi") → "Hi"
@@ -727,19 +747,27 @@ function withoutX(a) {
 
 console.log(withoutX("hxix"));
 
-/*
-Goal: take a string  if either or both of the first two chars are "x" return the string without any found "x" otherwise return the string
-Params: string
-Return Val: modified string
-Logic: 
-if both chars are x 
-return string without both chars
-if the second char is x 
-return the string without the second char
-if the first char is x
-return the string without the second char
+// or 
 
-Given a string, if one or both of the first 2 chars is 'x', return the string without those 'x' chars, and otherwise return the string unchanged. 
+function withoutX(a) {
+  let start = 0;
+  let end = a.length;
+  if (a.startsWith("x")) {
+    start = 1;
+  }
+  if (a.endsWith("x")) {
+    end = a.length - 1;
+  }
+  return a.substring(start, end);
+}
+
+console.log(withoutX("hxix"));
+
+//////////////////////////////////////////////////////////
+
+/*
+Given a string, if one or both of the first 2 chars is 'x', return the
+string without those 'x' chars, and otherwise return the string unchanged; 
 
 withoutX2("xHi") → "Hi"
 withoutX2("Hxi") → "Hi"
