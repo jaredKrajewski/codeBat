@@ -1,5 +1,6 @@
-// CodingBat.com array1 challenged solved in javascript.
-
+//////////////////////////////////////////////////////////
+/*CodingBat.com array1 challenges solved in javascript*/
+//////////////////////////////////////////////////////////
 /*
 Goal:take array and return true if first or last in array is 6;
 Params: array: arr;

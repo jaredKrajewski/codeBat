@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////////////
+/*CodingBat.com logic 2 challenges solved in javascript*/
+//////////////////////////////////////////////////////////
 /* 
 Goal:make a row of bricks that is goal inches long. we have small bricks(1 in ) and large bricks (5 in);
 Params: 1inchBrick: a, 5inchBrick: b, goal: goal;

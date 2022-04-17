@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////////////
+/*CodingBat.com string 2 challenges solved in javascript*/
+//////////////////////////////////////////////////////////
 /*
 Given a string, return a string where for every char in the original, there are two chars.
 

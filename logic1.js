@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////////////
+/*CodingBat.com logic 1 challenges solved in javascript*/
+//////////////////////////////////////////////////////////
 /*
 Goal: check true/false if number is between 40 & 60 unless it is the weekend where number minimum of 40 is required only
 Params: number, boolean (n, bool)
