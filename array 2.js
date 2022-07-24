@@ -622,30 +622,18 @@ shiftLeft([1, 2]) → [2, 1]
 shiftLeft([1]) → [1]
 */
 
-function shiftLeft(arr) {
-  if (arr.length == 0) {
-    return 0;
-  }
-  let first = arr.shift();
-  let array = [];
-  for (i = 0; i < arr.length; i++) {
-    array.push(arr[i]);
-  }
-  return [...array, first];
+function shiftLeft(arr){
+  return arr.splice(1).concat(arr.splice(0,1));
 }
-console.log(shiftLeft([1]));
+
+console.log(shiftLeft([6,2,5,3]));
+
+//////////////////////////////////////////////////////////
 
 /*
-Goal: loop over an array and change all indexes starting with multiple of 10 to that number until another multiple of 10 is found;
-Params: array: arr;
-Return Val: array;
-Logic:
-loop over array;
-if an index is % 10 == 0
- if the following index is not % 10 == 0 it becomes the index that was
-return the array;
-
-For each multiple of 10 in the given array, change all the values following it to be that multiple of 10, until encountering another multiple of 10. So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+For each multiple of 10 in the given array, change all the values following it to 
+be that multiple of 10, until encountering another multiple of 10.
+So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
 
 tenRun([2, 10, 3, 4, 20, 5]) → [2, 10, 10, 10, 20, 20]
 tenRun([10, 1, 20, 2]) → [10, 10, 20, 20]
@@ -663,17 +651,12 @@ function tenRun(arr) {
 
 console.log(tenRun([2, 10, 3, 4, 20, 5]));
 
-/* 
-Goal:return a new array with elements from original that came before the first '4'
-Params: array: arr;
-Return Val: array;
-Logic:
-loop over array;
-while index is not equal to 4;
-add each index to a new array;
-return new array;
+//////////////////////////////////////////////////////////
 
-Given a non-empty array of ints, return a new array containing the elements from the original array that come before the first 4 in the original array. The original array will contain at least one 4. Note that it is valid in java to create an array of length 0.
+/*
+Given a non-empty array of ints, return a new array containing the elements from the 
+original array that come before the first 4 in the original array. The original array
+will contain at least one 4. Note that it is valid in java to create an array of length 0.
 
 pre4([1, 2, 4, 1]) → [1, 2]
 pre4([3, 1, 4]) → [3, 1]
@@ -693,15 +676,27 @@ function pre4(arr) {
 
 console.log(pre4([1, 3, 4, 5]));
 
-/* 
-Goal:return a new array cotaining any elements that show up after 4;
-Params: array; 
-Return Val: array;
-Logic:
-loop over array backwards to find last 4
-splice array from that index to end and return it
+// or 
 
-Given a non-empty array of ints, return a new array containing the elements from the original array that come after the last 4 in the original array. The original array will contain at least one 4. Note that it is valid in java to create an array of length 0.
+function pre4(array) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 4) {
+      result = array.slice(0, i);
+      return result;
+    }
+  }
+  return result;
+}
+
+console.log(pre4([1, 2, 4, 1]));
+
+//////////////////////////////////////////////////////////
+
+/* 
+Given a non-empty array of ints, return a new array containing the elements from the 
+original array that come after the last 4 in the original array. The original array 
+will contain at least one 4. Note that it is valid in java to create an array of length 0.
 
 post4([2, 4, 1, 2]) → [1, 2]
 post4([4, 1, 4, 2]) → [2]
@@ -709,7 +704,7 @@ post4([4, 4, 1, 2, 3]) → [1, 2, 3]
 */
 
 function post4(arr) {
-  for (i = arr.length - 1; i > 0; i--) {
+  for (let i = arr.length - 1; i > 0; i--) {
     if (arr[i] === 4) {
       return arr.splice(i + 1);
     }
@@ -718,19 +713,12 @@ function post4(arr) {
 
 console.log(post4([2, 4, 1, 2]));
 
-/* 
-Goal: return an array where if a number(n) is between two others it is returned as the higher number along with the rest of the array.
-Params: array: arr; int: n;
-Return Val: array;
-Logic:
-loop over array;
- if an index is equal to n and the index before it is not undefined and the index after it is not undefined;
-  if the index below n is > than the index after;
-  replace the index of n with the index before it;
-  otherwise replace it with the index after;
-  return the array;
+//////////////////////////////////////////////////////////
 
- an element in an array is "alone" if there are values before and after it, and those values are different from it. Return a version of the given array where every instance of the given value which is alone is replaced by whichever value to its left or right is larger.
+/* 
+an element in an array is "alone" if there are values before and after it, and those
+values are different from it. Return a version of the given array where every instance
+of the given value which is alone is replaced by whichever value to its left or right is larger.
 
 notAlone([1, 2, 3], 2) → [1, 3, 3]
 notAlone([1, 2, 3, 2, 5, 2], 2) → [1, 3, 3, 5, 5, 2]
