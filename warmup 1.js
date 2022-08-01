@@ -10,9 +10,12 @@ sleepIn(false, true) → true
 */
 
 function sleepIn (weekday, vacation){
+  // returns true anytime other than weekdays and always on vacaton;
     return (!weekday || vacation);
   }
   console.log(sleepIn(true, false))
+
+//////////////////////////////////////////////////////////
 
 /*
 We have two monkeys, a and b, and the parameters aSmile and bSmile indicate if each is smiling.
@@ -23,9 +26,12 @@ monkeyTrouble(true, false) → false
 */
 
 function monkeyTrouble(aSmile, bSmile) {
+    // if neither is smiling or both are smiling return false;
     return (!aSmile && !bSmile || aSmile && bSmile)
   }
   console.log(monkeyTrouble(false, true))
+
+//////////////////////////////////////////////////////////
 
 /*
 Given two int values, return their sum. Unless the two values are the same, then return double their sum.
@@ -35,15 +41,20 @@ sumDouble(2, 2) → 8
 */
 
 function sumDouble(a,b){
+  //if a === b add them and multiply by two;
   if (a === b) {
     return (a+b)*2
   } 
+  // if they are different return a + b;
     return a + b
 }
 console.log(sumDouble(2,2))
 
+//////////////////////////////////////////////////////////
+
 /*
-Given an int n, return the absolute difference between n and 21, except return double the absolute difference if n is over 21.
+Given an int n, return the absolute difference between n and 21,
+except return double the absolute difference if n is over 21.
 diff21(19) → 2
 diff21(10) → 11
 diff21(21) → 0 
@@ -54,6 +65,8 @@ function diff21(n) {
   }
   console.log(diff21(21))
 
+//////////////////////////////////////////////////////////
+
 /*
 We have a loud talking parrot. The "hour" parameter is the current hour time in the range 0..23. 
 We are in trouble if the parrot is talking and the hour is before 7 or after 20. Return true if we are in trouble.
@@ -62,30 +75,30 @@ parrotTrouble(true, 7) → false
 parrotTrouble(false, 6) → false 
 */
 
-function parrotTrouble(talking, hour){
-    if (talking && hour < 7 || hour > 20){
-      return true;
-    }
-    return false;
-  }
-  console.log(parrotTrouble(false, 7))
+function parrotTrouble(talking,hour){
+  // returns true if the hour is before 7 or after 20 and talking is true;
+  return ((hour <7 || hour > 20 )&& talking)
+}
+
+console.log(parrotTrouble(true, 7))
+
+//////////////////////////////////////////////////////////
 
 /*
-Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10.
+Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10;
 makes10(9, 10) → true
 makes10(9, 9) → false
 makes10(1, 9) → true 
 */
 
 function makes10(a, b) {
-    if (a === 10 || b === 10){ 
-      return true;
-    }else if (a + b === 10){
-      return true
-    }
-    return false;
-  }
-  console.log(makes10(9, 1))
+  // add a & b and if they === 10 return true, or if a is >10 or b is >10 return true;
+  return a + b === 10 || a > 10 || b > 10;
+}
+
+console.log(makes10(1, 9));
+
+//////////////////////////////////////////////////////////
 
 /*
 Given an int n, return true if it is within 10 of 100 or 200. Note: Math.abs(num) computes the absolute value of a number.
@@ -94,26 +107,31 @@ nearHundred(90) → true
 nearHundred(89) → false 
 */
 
-function nearHundred(n){
-    let aNum = n - 100
-    let bNum = n - 200
-    if (Math.abs(aNum) <= 10 || Math.abs(bNum) <= 10 ){
-        return true;
-    }
-    return false;
-  }  
-  console.log(nearHundred(89))
+function nearHundred(n) {
+  // variables for the difference of n from 100 and 200;
+  let a = Math.abs(n - 100);
+  let b = Math.abs(n - 200);
+  // returns true if either difference is less than 10;
+  return a <= 10 || b <= 10;
+}
+console.log(nearHundred(89));
+
+//////////////////////////////////////////////////////////
 
 /* 
-Given 2 int values, return true if one is negative and one is positive. Except if the parameter "negative" is true, then return true only if both are negative.
+Given 2 int values, return true if one is negative and one is positive.
+Except if the parameter "negative" is true,
+then return true only if both are negative.
 posNeg(1, -1, false) → true
 posNeg(-1, 1, false) → true
 posNeg(-4, -5, true) → true
 */
 
 function posNeg(a,b, negative){
+  // if not negative and a < 0 a&& b > 0 || a > 0 && b < 0 return true;
   if (!negative && ((a < 0 && b > 0) || (a > 0 && b < 0 ))){
     return true;
+    // otherwise if negative is true and a < 0 && b < 0 return true;
   } else if (negative && a < 0 && b < 0){
     return true;
   }
@@ -121,35 +139,56 @@ function posNeg(a,b, negative){
 }
 console.log(posNeg(1, -1, false))
 
+//OR
+
+function posNeg(a,b,negative){
+  // gives true if a or b is > 0;
+  let abPos = (a > 0 || b > 0)
+  // gives true if a and b are < 0;
+  let abNeg = (a < 0 && b < 0)
+  // if negative is false and a or b is positive return true || if negative is true and abNeg is true return true;
+  return !negative && abPos || negative &&  abNeg
+  
+}
+console.log(posNeg(-4, -5, true))
+
+//////////////////////////////////////////////////////////
+
 /*
 Given a string, return a new string where "not " has been added to the front. 
-However, if the string already begins with "not", return the string unchanged. Note: use .equals() to compare 2 strings.
+However, if the string already begins with "not", return the string unchanged. 
+Note: use .equals() to compare 2 strings.
 notString("candy") → "not candy"
 notString("x") → "not x"
 notString("not bad") → "not bad" 
 */
 
-function  notString(str){
-    if (str.startsWith("not")){
-      return str;
-    } 
-      return "not "+ str;
+  function notString(str) {
+      // if the string starts with "not" already return the string;
+      // otherwise add not to the string and return it;
+    return str.substr(0, 3) === "not" ? str : `not ${str}`;
   }
-  console.log(notString("not x"))
+  console.log(notString("candy"));
+
+//////////////////////////////////////////////////////////
 
 /*
 Given a non-empty string and an int n, return a new string where the char at index n has been removed. 
-The value of n will be a valid index of a char in the original string (i.e. n will be in the range 0..str.length()-1 inclusive).
+The value of n will be a valid index of a char in the original string 
+(i.e. n will be in the range 0..str.length()-1 inclusive).
 missingChar("kitten", 1) → "ktten"
 missingChar("kitten", 0) → "itten"
 missingChar("kitten", 4) → "kittn"
 */
 
-function missingChar(str, n){
-    return str.slice(0, n) + str.slice(n + 1)
+function missingChar(str,index){
+  // return the str starting at 0, ending at index + the remainder of the str starting at one past the index;
+  return str.substr(0,index) + str.substr(index+1)
   }
   
-  console.log(missingChar("kitten", 0))
+  console.log(missingChar("kitten", 4))
+
+//////////////////////////////////////////////////////////
 
 /*
 Given a string, return a new string where the first and last chars have been exchanged.
@@ -171,6 +210,20 @@ function frontBack(str){
 
 console.log(frontBack("a"))
 
+//OR
+
+function frontBack(str) {
+  // if the string is > 1 return  the last char + the 2nd up to the last + the first char;
+  return str.length > 1
+    ? str[str.length - 1] + str.substr(1, str.length - 2) + str[0]
+    // if string is < 1 return str
+    : str;
+}
+
+console.log(frontBack("a"));
+
+//////////////////////////////////////////////////////////
+
 /* 
 Given a string, we'll say that the front is the first 3 chars of the string. If the string length is less than 3, the front is whatever is there. Return a new string which is 3 copies of the front.
 front3("Java") → "JavJavJav"
@@ -179,14 +232,13 @@ front3("abc") → "abcabcabc"
 */
 
 function front3(str) {
-  let front = str.substr(0, 3);
-  if (str.length > 3) {
-    return front + front + front;
-  }
-  return str + str + str;
+  // get the first 3 letters and repeat them 3 times;
+  return str.substr(0, 3).repeat(3);
 }
 
-console.log(front3("abc"));
+console.log(front3("Java"));
+
+//////////////////////////////////////////////////////////
 
 /* 
 Given a string, take the last char and return a new string with the last char added at the front and back, so "cat" yields "tcatt". The original string will be length 1 or more.
@@ -196,10 +248,14 @@ backAround("a") → "aaa"
 */ 
 
 function backAround(str){
+  // variable for last char of str;
   let last = str.charAt(str.length - 1)
+  // return the last char + the str + the last char;
   return last + str + last
 }
 console.log(backAround("a"))
+
+//////////////////////////////////////////////////////////
 
 /*
 Return true if the given non-negative number is a multiple of 3 or a multiple of 5. Use the % "mod" operator -- see Introduction to Mod

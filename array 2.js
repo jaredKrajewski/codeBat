@@ -641,9 +641,15 @@ tenRun([10, 1, 9, 20]) → [10, 10, 10, 20]
 */
 
 function tenRun(arr) {
+  // iterate the array;
   for (i = 0; i < arr.length - 1; i++) {
+    // if the int at i is divisible by 10  and === 0;
     if (arr[i] % 10 == 0) {
-      if (arr[i + 1] % 10 != 0) arr[i + 1] = arr[i];
+     // if the following number is not divisible by 10 and === 0;
+      if (arr[i + 1] % 10 != 0) {
+        // set that number to the current number;
+        arr[i + 1] = arr[i];
+      }
     }
   }
   return arr;
@@ -653,15 +659,6 @@ console.log(tenRun([2, 10, 3, 4, 20, 5]));
 
 //////////////////////////////////////////////////////////
 
-/*
-Given a non-empty array of ints, return a new array containing the elements from the 
-original array that come before the first 4 in the original array. The original array
-will contain at least one 4. Note that it is valid in java to create an array of length 0.
-
-pre4([1, 2, 4, 1]) → [1, 2]
-pre4([3, 1, 4]) → [3, 1]
-pre4([1, 4, 4]) → [1]
-*/
 
 function pre4(arr) {
   let upToFour = [];
@@ -679,8 +676,11 @@ console.log(pre4([1, 3, 4, 5]));
 // or 
 
 function pre4(array) {
+  // variable for the result array;
   let result = [];
+  // iterate over the array;
   for (let i = 0; i < array.length; i++) {
+    // if the index is === 4 set result to the array from start ending at the current index;
     if (array[i] === 4) {
       result = array.slice(0, i);
       return result;
