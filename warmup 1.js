@@ -185,7 +185,6 @@ function missingChar(str,index){
   // return the str starting at 0, ending at index + the remainder of the str starting at one past the index;
   return str.substr(0,index) + str.substr(index+1)
   }
-  
   console.log(missingChar("kitten", 4))
 
 //////////////////////////////////////////////////////////
@@ -207,7 +206,6 @@ function frontBack(str){
   }
   return str
 }
-
 console.log(frontBack("a"))
 
 //OR
@@ -219,13 +217,13 @@ function frontBack(str) {
     // if string is < 1 return str
     : str;
 }
-
 console.log(frontBack("a"));
 
 //////////////////////////////////////////////////////////
 
 /* 
-Given a string, we'll say that the front is the first 3 chars of the string. If the string length is less than 3, the front is whatever is there. Return a new string which is 3 copies of the front.
+Given a string, we'll say that the front is the first 3 chars of the string.
+ If the string length is less than 3, the front is whatever is there. Return a new string which is 3 copies of the front.
 front3("Java") → "JavJavJav"
 front3("Chocolate") → "ChoChoCho"
 front3("abc") → "abcabcabc" 
@@ -235,13 +233,13 @@ function front3(str) {
   // get the first 3 letters and repeat them 3 times;
   return str.substr(0, 3).repeat(3);
 }
-
 console.log(front3("Java"));
 
 //////////////////////////////////////////////////////////
 
 /* 
-Given a string, take the last char and return a new string with the last char added at the front and back, so "cat" yields "tcatt". The original string will be length 1 or more.
+Given a string, take the last char and return a new string with the last char 
+added at the front and back, so "cat" yields "tcatt". The original string will be length 1 or more.
 backAround("cat") → "tcatt"
 backAround("Hello") → "oHelloo"
 backAround("a") → "aaa" 
@@ -258,32 +256,40 @@ console.log(backAround("a"))
 //////////////////////////////////////////////////////////
 
 /*
-Return true if the given non-negative number is a multiple of 3 or a multiple of 5. Use the % "mod" operator -- see Introduction to Mod
+Return true if the given non-negative number is a multiple of 3 or a multiple of 5.
+Use the % "mod" operator -- see Introduction to Mod
 or35(3) → true
 or35(10) → true
 or35(8) → false 
 */
 
-function or35(n){
-  if (n % 3 == 0 || n % 5 == 0){
-    return true;
-  } 
-  return false;
+function or35(a) {
+  // returns true if a is divisible by 3 or 5;
+  return a % 3 == 0 || a % 5 == 0;
 }
-console.log(or35(8))
+
+console.log(or35(8);
+
+//////////////////////////////////////////////////////////
 
 /* 
-Given a string, take the first 2 chars and return the string with the 2 chars added at both the front and back, so "kitten" yields"kikittenki". If the string length is less than 2, use whatever chars are there.
+Given a string, take the first 2 chars and return the string with the 2 chars added
+at both the front and back, so "kitten" yields"kikittenki". 
+If the string length is less than 2, use whatever chars are there.
 front22("kitten") → "kikittenki"
 front22("Ha") → "HaHaHa"
 front22("abc") → "ababcab" 
 */
 
 function front22(str){
+  // stores the first two chars;
   let first = str.substr(0,2)
+  // returns the first two chars + the str + the first two chars;
   return first + str + first
  }
  console.log(front22("Ha"))
+
+ //////////////////////////////////////////////////////////
 
  /*
  Given a string, return true if the string starts with "hi" and false otherwise.
@@ -293,12 +299,12 @@ startHi("hello hi") → false
 */
 
 function startHi(str){
-  if (str.startsWith('hi')){
-    return true;
-  }
-  return false;
+  // returns true if the string starts with "hi";
+ return str.startsWith("hi")
 }
 console.log(startHi("hi there"))
+
+//////////////////////////////////////////////////////////
 
 /*
 Given two temperatures, return true if one is less than 0 and the other is greater than 100.
@@ -315,6 +321,20 @@ function icyHot(a, b){
 }
 console.log(icyHot(120, -1))
 
+//OR
+
+function icyHot(a, b){
+  // true if a < 0 && b > 100;
+  let aLow = a < 0 && b > 100;
+  // true if b < 0 && a > 100;
+  let bLow = b < 0 && a > 100;
+  // if a or b returns true we get true back;
+  return aLow || bLow;
+  }
+  console.log(icyHot(2, 120) )
+
+//////////////////////////////////////////////////////////
+
 /*
 Given 2 int values, return true if either of them is in the range 10..20 inclusive.
 in1020(12, 99) → true
@@ -328,8 +348,26 @@ function in1020(a, b){
   }
   return false;
 }
-
 console.log(in1020(8, 99))
+
+//OR
+
+function in1020(a,b){
+
+// helper function returns true if num >=10 and <=20;
+  let between10And20 = (num) => {
+    return num >= 10 && num <=20
+  }
+  // returns true if a meets condition of function
+  let aCheck = between10And20(a);
+  // returns true if a meets condition of function
+  let bCheck = between10And20(b);
+  // returns true if either condition is met
+  return aCheck||bCheck;
+}
+console.log(in1020(8, 99))
+
+//////////////////////////////////////////////////////////
 
 /*
 We'll say that a number is "teen" if it is in the range 13..19 inclusive. Given 3 int values, return true if 1 or more of them are teen.
@@ -344,11 +382,29 @@ function hasTeen(a, b, c){
   }
   return false;
 }
-
 console.log(hasTeen(22, 20, 10))
 
+//OR
+
+function hasTeen(a, b, c) {
+  // helper function to check if num is a teen;
+  let checkTeen = (n) => {
+    return n > 12 && n < 20;
+  };
+  // variable for each argument that returns true if it passes range check;
+  let acheck = checkTeen(a);
+  let bcheck = checkTeen(b);
+  let ccheck = checkTeen(c);
+  // returns true if any of the teen checks passes;
+  return acheck || bcheck || ccheck;
+}
+console.log(hasTeen(10, 20, 13));
+
+//////////////////////////////////////////////////////////
+
 /*
-We'll say that a number is "teen" if it is in the range 13..19 inclusive. Given 2 int values, return true if one or the other is teen, but not both.
+We'll say that a number is "teen" if it is in the range 13..19 inclusive.
+Given 2 int values, return true if one or the other is teen, but not both.
 loneTeen(13, 99) → true
 loneTeen(21, 19) → true
 loneTeen(13, 13) → false
@@ -365,18 +421,48 @@ function loneTeen(a, b){
 
 console.log(loneTeen(21, 19))
 
+//OR
+
+function loneTeen(a,b){
+  // helper function to check if num is a teen;
+  let checkTeen = (n) =>{
+    return n > 12 && n < 20
+  }
+  // checks if a is a teen;
+  let aCheck = checkTeen(a);
+  // checks if b is a teen;
+  let bCheck = checkTeen(b);
+    // returns true if a is a teen and b is not or a is not a teen and b is;
+    return (aCheck && !bCheck) || (!aCheck && bCheck)
+  }
+  console.log(loneTeen(21, 19))
+
+
+//////////////////////////////////////////////////////////
+
 /* 
 Given a string, if the string "del" appears starting at index 1, return a string where that "del" has been deleted. Otherwise, return the string unchanged.
 delDel("adelbc") → "abc"
 delDel("adelHello") → "aHello"
 delDel("adedbc") → "adedbc" 
 */
+function delDel(str) {
+  // if the string at index 1-4 is "del" 
+  // return the string before and after index 1-4
+  // otherwise return the string;
+  return str.substr(1, 3) === "del" ? str.substr(0, 1) + str.substr(4) : str;
+}
+console.log(delDel("adelHello"));
 
+//OR
+
+// works but isnt correct because it will replace it regardless of position;
 function delDel(str){
   return (str.replace('del', ''))
 }
-
 console.log(delDel("adedbc"))
+
+//////////////////////////////////////////////////////////
 
 /*
 Return true if the given string begins with "mix", except the 'm' can be anything, so "pix", "9ix" .. all count.
@@ -384,36 +470,40 @@ mixStart("mix snacks") → true
 mixStart("pix snacks") → true
 mixStart("piz snacks") → false 
 */
+function mixStart(str) {
+  // returns true if the string starts with "_ix"
+  return str.substr(1, 2) === "ix";
+}
+console.log(mixStart("miz snacks"));
 
-function mixStart(str){
-  if (str.includes('ix')) {
-     return true;
-   }
-   return false;
- }
- 
- console.log(mixStart("piz snacks"))
+//////////////////////////////////////////////////////////
 
- /*
- Given a string, return a string made of the first 2 chars (if present), however include first char only if it is 'o' and include the second only if it is 'z', so "ozymandias" yields "oz".
+/*
+Given a string, return a string made of the first 2 chars (if present),
+however include first char only if it is 'o' and include the second only
+if it is 'z', so "ozymandias" yields "oz".
 startOz("ozymandias") → "oz"
 startOz("bzoo") → "z"
 startOz("oxx") → "o"
 */
 
 function startOz(str) {
-  if (str.charAt(0) == "o" && str.charAt(1) == "z") {
-    return "oz";
+  // variable for building a string;
+  let string = "";
+  // if the first index is o, add it to the string;
+  if (str.substr(0, 1) === "o") {
+    string += "o";
   }
-  if (str.charAt(0) == "o") {
-    return "o";
+  // if the second char is z, add it to the string;
+  if (str.substr(1, 1) === "z") {
+    string += "z";
   }
-  if (str.charAt(1) == "z") {
-    return "z";
-  }
+  // return the string;
+  return string;
 }
+console.log(startOz("ozymandias"));
 
-console.log(startOz("oxx"));
+//////////////////////////////////////////////////////////
 
 /* 
 Given three int values, a b c, return the largest.
@@ -422,58 +512,92 @@ intMax(1, 3, 2) → 3
 intMax(3, 2, 1) → 3 
 */
 
-function intMax(a,b,c){
-  return Math.max(a,b,c)
+function intMax(){
+  // uses the Math object to return the largest value, takes in any sized input;
+  return Math.max(...arguments)
   
 }
 console.log(intMax(1, 45, 3))
 
+//////////////////////////////////////////////////////////
+
 /*
-Given 2 int values, return whichever value is nearest to the value 10, or return 0 in the event of a tie. Note that Math.abs(n) returns the absolute value of a number.
+Given 2 int values, return whichever value is nearest to the value 10,
+or return 0 in the event of a tie. Note that Math.abs(n) returns the absolute value of a number.
 close10(8, 13) → 8
 close10(13, 8) → 8
 close10(13, 7) → 0 
 */
 
 function close10(a, b) {
-  let i = Math.abs(10 - a);
-  let j = Math.abs(10 - b);
-  if (i > j) {
-    return a;
+  // if the difference of a-10 and b-10 is the same return 0;
+  if (Math.abs(a - 10) === Math.abs(b - 10)) {
+    return 0;
   }
-  if (j > i) {
-    return b;
-  }
-
-  return 0;
+  // if the difference between a and 10 is less than b and 10 return a otherwise return b;
+  return Math.abs(a - 10) < Math.abs(b - 10) ? a : b;
 }
-
 console.log(close10(8, 13));
 
+//////////////////////////////////////////////////////////
+
 /* 
-Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
+Given 2 int values, return true if they are both in the range 30..40 inclusive,
+or they are both in the range 40..50 inclusive.
 in3050(30, 31) → true
 in3050(30, 41) → false
 in3050(40, 50) → true 
 */
 
 function in3050(a,b){
+  //boolean checks if num is within ranges
+  let a3040 = a >= 30 && a <=40
+  let b3040 = b >= 30 && b <=40
+  let a4050 = a >= 40 && a <=50
+  let b4050 = b >= 40 && b <=50
+  // returns true if both are within the same range
+  return a3040 && b3040 || a4050 && b4050
+}
+console.log(in3050(40, 50))
+
+//OR
+
+function in3050(a,b){
+  // if a is > 30 and < 40 and b is >30 and < 40 return true;
   if((a >=30 && a <= 40) && (b >=30 && b <= 40)){
     return true
+  // if a is > 40 and < 50 and b is >40 and less than 50 return true;
   }else if ((a >=40 && a <= 50) && (b >=40 && b <= 50)){
     return true;
   }
    return false;
  }
- 
  console.log(in3050(31, 41))
 
+//////////////////////////////////////////////////////////
+
 /*
-Given 2 positive int values, return the larger value that is in the range 10..20 inclusive, or return 0 if neither is in that range.
+Given 2 positive int values, return the larger value that is in the range 10..20 inclusive,
+or return 0 if neither is in that range.
 max1020(11, 19) → 19
 max1020(19, 11) → 19
 max1020(11, 9) → 11 
 */
+
+function max1020(a, b) {
+  // booleans for a and b, return true if between 10 and 20;
+  let aVal = a >= 10 && a <= 20;
+  let bVal = b >= 10 && b <= 20;
+  // if either is in range, return the larger of a or b;
+  if (aVal || bVal) {
+    return Math.max(a, b);
+  }
+  // otherwise if neither is in range return 0;
+  return 0;
+}
+console.log(max1020(18, 19));
+
+//OR
 
 function max1020(a,b){
   if ( a < 0 || a > 20 && b < 0 || b > 20){
@@ -484,6 +608,8 @@ function max1020(a,b){
    
   console.log(max1020(33, 31))
 
+//////////////////////////////////////////////////////////
+
 /*
 Return true if the given string contains between 1 and 3 'e' chars.
 stringE("Hello") → true
@@ -492,22 +618,51 @@ stringE("Heelele") → false
 */
 
 function stringE(str) {
-  let count = 0;
-  for (i = 0; i < str.length; i++)
-    if (str.charAt(i) == "e") {
-      count++;
-    }
-  if (count >= 1 && count <= 3) {
-    return true;
-  }
-  return false;
+  // variable for count of "e";
+  let eCount = 0;
+  // splits the string into array by each char, loops over array;
+  str.split("").forEach((letter) => {
+    // if the letter is "e" increment the count if not do nothing;
+    letter === "e" ? eCount++ : null
+  });
+  //if the count is between 1 and 3 return true;
+  return eCount >= 1 && eCount <= 3;
 }
-console.log(stringE("hello"));
+console.log(stringE("Heelloe"));
 
-/*Given two non-negative int values, return true if they have the same last digit, such as with 27 and 57. Note that the % "mod" operator computes remainders, so 17 % 10 is 7.
+//OR
+
+function stringE(str) {
+  // variable for counting e's in string;
+  let eCount = 0;
+  // loop over strings length and check if chat at each index is "e";
+  // if it is increment the count by 1;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "e") {
+      eCount++;
+    }
+  }
+    //if the count is between 1 and 3 return true;
+  return eCount >= 1 && eCount <= 3;
+}
+console.log(stringE("Heelloe"));
+
+//////////////////////////////////////////////////////////
+
+/*Given two non-negative int values, return true if they have the same last digit,
+such as with 27 and 57. Note that the % "mod" operator computes remainders, so 17 % 10 is 7.
 lastDigit(7, 17) → true
 lastDigit(6, 17) → false
-lastDigit(3, 113) → true*/
+lastDigit(3, 113) → true
+*/
+
+function lastDigit(a,b){
+  // if the last digit of a is == to the last digit of b returns true;
+  return a%10 == b %10;
+}
+console.log(lastDigit(3, 113))
+
+//or
 
 function lastDigit(x, y) {
   if (x % 10 == y % 10)
@@ -519,11 +674,30 @@ function lastDigit(x, y) {
 }
 console.log(lastDigit(6, 17));
 
+//////////////////////////////////////////////////////////
+
 /*
-Given a string, return a new string where the last 3 chars are now in upper case. If the string has less than 3 chars, uppercase whatever is there. Note that str.toUpperCase() returns the uppercase version of a string.
+Given a string, return a new string where the last 3 chars are now in upper case.
+If the string has less than 3 chars, uppercase whatever is there.
+Note that str.toUpperCase() returns the uppercase version of a string.
 endUp("Hello") → "HeLLO"
 endUp("hi there") → "hi thERE"
-endUp("hi") → "HI"*/
+endUp("hi") → "HI"
+*/
+
+function endUp(str) {
+  // if the strings length is <3 return whatevers there as uppercase;
+  if (str.length < 3) {
+    return str.toUpperCase();
+  }
+  // returns the start of the string up to the last 3 + the last 3 as uppercase chars;
+  return (
+    str.substr(0, str.length - 3) + str.substr(str.length - 3).toUpperCase()
+  );
+}
+console.log(endUp("hi there"));
+
+//OR
 
 function endUp(str){
   if (str.length < 3){
@@ -534,6 +708,8 @@ function endUp(str){
  return start + end
 }
 console.log(endUp("hi there"))
+
+//////////////////////////////////////////////////////////
 
 /*
 Goal: return a string starting at the 0th index and every nth char.
@@ -547,11 +723,18 @@ everyNth("Miracle", 2) → "Mrce"
 everyNth("abcdefg", 2) → "aceg"
 everyNth("abcdefg", 3) → "adg" 
 */
-function everyNth(str, n) {
-    return (
-      str.substr(0, 1) + str.charAt(n) + str.charAt(n * 2) + str.charAt(n * 3)
-    );
-  }
-  
-  console.log(everyNth("miracle", 2));
 
+function everyNth(str, n) {
+  // variable with frist char of string;
+  let string = str.charAt(0);
+  // loop over the string starting at the first index;
+  for (let i = 1; i < str.length; i++) {
+    // if the index divided by n === append that char to the string;
+    if (i % n === 0) string += str.charAt(i);
+  }
+  return string;
+}
+console.log(everyNth("abcdefg", 2));
+
+//////////////////////////////////////////////////////////
+/* END OF CODING BAT WARMUP 1 IN JAVASCRIPT */
