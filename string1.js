@@ -12,18 +12,13 @@ helloName("X") → "Hello X!"
 function helloName(name){
     console.log("hello " + name + "!")
   }
-  
   helloName("Bob")
 
   // or 
-  
-  function helloName(name) {
-    return `Hello ${name}!`;
-  }
-  
-  console.log(helloName("Bob"));
+  // returns the name with Hello  before and ! after
+  const helloName = str => `Hello ${str}!`
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*
 Given two strings, a and b, return the result of putting them together 
@@ -34,19 +29,18 @@ makeAbba("Yo", "Alice") → "YoAliceAliceYo"
 makeAbba("What", "Up") → "WhatUpUpWhat"
 */
 
-  function makeAbba(a, b){
+function makeAbba(a, b){
+    // returns first string + second string + second string + first string;
     return a + b + b+ a
   }
-  
-  console.log(makeAbba("Hi", "Bye"))
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*
 The web is built with HTML strings like "<i>Yay</i>" which draws Yay
- as italic text. In this example, the "i" tag makes <i> and </i> which 
- surround the word "Yay". Given tag and word strings, 
- create the HTML string with tags around the word, e.g. "<i>Yay</i>";
+as italic text. In this example, the "i" tag makes <i> and </i> which 
+surround the word "Yay". Given tag and word strings, 
+create the HTML string with tags around the word, e.g. "<i>Yay</i>";
 
 makeTags("i", "Yay") → "<i>Yay</i>"
 makeTags("i", "Hello") → "<i>Hello</i>"
@@ -56,41 +50,33 @@ makeTags("cite", "Yay") → "<cite>Yay</cite>"
 function makeTags(a,b){
     return(`<${a}>${b}</${a}>`)
   }
-  
-  console.log(makeTags("i", "Yay"))
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*
 Given an "out" string length 4, such as "<<>>", and a word, return a new 
 string where the word is in the middle of the out string, e.g.
- "<<word>>". Note: use str.substring(i, j) to extract the String 
- starting at index i and going up to but not including index j;
+"<<word>>". Note: use str.substring(i, j) to extract the String 
+starting at index i and going up to but not including index j;
 
 makeOutWord("<<>>", "Yay") → "<<Yay>>"
 makeOutWord("<<>>", "WooHoo") → "<<WooHoo>>"
 makeOutWord("[[]]", "word") → "[[word]]"
 */
 
+function makeOutWord(outer, inner){
+  return `${outer.substr(0,2)}${inner}${outer.substr(-2)}`
+}
+
 function makeOutWord(a,b){
     return(a.substr(0, a.length - 2) + b + a.substr(2))
   }
-  
-  console.log(makeOutWord("[[]]", "word"))
-
-  // or 
-
-  function makeOutWord(a, b) {
-    return a.substr(0, 2) + b + a.substr(a.length / 2);
-  }
-  
-  console.log(makeOutWord("<<>>", "WooHoo"));
 
   //////////////////////////////////////////////////////////
 
 /* 
 Given a string, return a new string made of 3 copies of the last 2
- chars of the original string. The string length will be at least 2;
+chars of the original string. The string length will be at least 2;
 
 extraEnd("Hello") → "lololo"
 extraEnd("ab") → "ababab"
@@ -101,24 +87,20 @@ function extraEnd(a){
     let lastTwo = a.substring(a.length -2)
     return (lastTwo + lastTwo + lastTwo)
   }
-  
-  console.log(extraEnd("Hello"))
 
   // or 
 
-  function extraEnd(a) {
+function extraEnd(a) {
     return a.substr(-2).repeat(3);
   }
-  
-  console.log(extraEnd("Hello"));
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*Given a string, return the string made of its first two chars,
-   so the String "Hello" yields "He". If the string is shorter than 
-   length 2, return whatever there is, so "X" yields "X", and the empty
-   string "" yields the empty string "". Note that str.length() returns
-   the length of a string;
+so the String "Hello" yields "He". If the string is shorter than 
+length 2, return whatever there is, so "X" yields "X", and the empty
+string "" yields the empty string "". Note that str.length() returns
+the length of a string;
 
 firstTwo("Hello") → "He"
 firstTwo("abcdefg") → "ab"
@@ -127,15 +109,13 @@ firstTwo("ab") → "ab"
 
 function firstTwo(a){
     return a.substring(0,2)
-  }
-  
-  console.log(firstTwo("Hello"))
+ }
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*
 Given a string of even length, return the first half. So the string
- "WooHoo" yields "Woo";
+"WooHoo" yields "Woo";
 
 firstHalf("WooHoo") → "Woo"
 firstHalf("HelloThere") → "Hello"
@@ -146,13 +126,11 @@ function firstHalf(a){
   return(a.substr(0 , a.length/2))
 }
 
-console.log(firstHalf("WooHoo"))
-
 //////////////////////////////////////////////////////////
 
 /*
 Given a string, return a version without the first and last char,
- so "Hello" yields "ell". The string length will be at least 2;
+so "Hello" yields "ell". The string length will be at least 2;
 
 withoutEnd("Hello") → "ell"
 withoutEnd("java") → "av"
@@ -162,8 +140,6 @@ withoutEnd("coding") → "odin"
 function withoutEnd(a) {
   return a.substr(1, a.length - 2);
 }
-
-console.log(withoutEnd("coding"));
 
 //////////////////////////////////////////////////////////
 
@@ -187,14 +163,10 @@ function comboString(a, b) {
   return a + b + a;
 }
 
-console.log(comboString("hi", "Hello"));
+//OR
 
-// or 
-
-function comboString(a, b) {
-  let aLength = a.length;
-  let bLength = b.length;
-  return aLength > bLength ? b + a + b : a + b + a;
+function comboString(a, b) { 
+  return a.length > b.length ? b + a + b : a + b + a;
 }
 console.log(comboString("hi", "Hello"));
 
@@ -209,13 +181,9 @@ nonStart("java", "code") → "avaode"
 nonStart("shotl", "java") → "hotlava"
 */
 
-function nonStart(a,b){
-  let aWithoutFirst = a.substr(1);
-  let bWithoutFirst = b.substr(1)
-  return (aWithoutFirst + bWithoutFirst)
-}
-
-console.log(nonStart("Hello", "There"))
+function nonStart(a,b) {
+  return a.substr(1) + b.substr(1);
+ }
 
 //////////////////////////////////////////////////////////
 
@@ -228,13 +196,9 @@ left2("java") → "vaja"
 left2("Hi") → "Hi"
 */
 
-function left2(a) {
-  let firstTwoGone = a.substr(2);
-  let firstTwoChars = a.substr(0, 2);
-  return firstTwoGone + firstTwoChars;
+function left2(str){
+  return str.substr(2, str.length - 2) + str.substr(0,2) 
 }
-
-console.log(left2("java"));
 
 //////////////////////////////////////////////////////////
 
@@ -247,13 +211,9 @@ right2("java") → "vaja"
 right2("Hi") → "Hi"
 */
 
-function right2(x) {
-  let lastTwoChars = x.substr(-2);
-  let allButLastTwo = x.substr(0, x.length - 2);
-  return lastTwoChars + allButLastTwo;
+function right2(str){
+  return str.substr(-2,2) + str.substr(0, str.length -2)
 }
-
-console.log(right2("java"));
 
 //////////////////////////////////////////////////////////
 
@@ -267,13 +227,7 @@ theEnd("Hello", false) → "o"
 theEnd("oh", true) → "o"
 */
 
-function theEnd(a, b) {
-  if (b === true) {
-    return a.substr(0, 1);
-  } else return a.substr(- 1);
-}
-
-console.log(theEnd("Hello", false));
+const theEnd = (str, bool) => (bool ? str.charAt(0) : str.charAt(str.length));
 
 //////////////////////////////////////////////////////////
 
@@ -286,11 +240,7 @@ withouEnd2("abc") → "b"
 withouEnd2("ab") → ""
 */
 
-function withoutEnd2(a){
-  return a.substr(1,a.length-2)
-}
-
-console.log(withoutEnd2("ab"))
+const withouEnd2 = (str) => str.substr(1,str.length - 2)
 
 //////////////////////////////////////////////////////////
 
@@ -304,11 +254,8 @@ middleTwo("code") → "od"
 middleTwo("Practice") → "ct"
 */
 
-function middleTwo(str) {
-  return str.substr(str.length / 2 - 1, 2);
-}
-
-console.log(middleTwo("practice"));
+const middleTwo = (str) =>
+  str.substr(str.length / 2 - 1, 1) + str.substr(str.length / 2, 1);
 
 //////////////////////////////////////////////////////////
 
@@ -319,22 +266,7 @@ endsLy("y") → false
 endsLy("oddy") → false
 */
 
-function endsLy(str){
-  if (str.substr(str.length - 2, str.length - 1)  == 'ly' ){
-    return true;
-  }
-  return false;
-}
-
-console.log(endsLy("y"))
-
-// or 
-
-function endsLy(str){
-  return str.substr(-2)  == 'ly';
-}
-
-console.log(endsLy("oyly"))
+const endsLy = (str) => str.substr(-2) === "ly";
 
 //////////////////////////////////////////////////////////
 
@@ -347,11 +279,7 @@ nTwice("Chocolate", 3) → "Choate"
 nTwice("Chocolate", 1) → "Ce"
 */
 
-function nTwice(word, n) {
-  return word.substr(0, n) + word.substr(- n);
-}
-
-console.log(nTwice("Chocolate", 3));
+const nTwice = (str, n) => str.substr(0, n) + str.substr(str.length - n);
 
 //////////////////////////////////////////////////////////
 
