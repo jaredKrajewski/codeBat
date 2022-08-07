@@ -33,9 +33,8 @@ function frontTimes(str, n){
 
 //////////////////////////////////////////////////////////
 
-// YEAH YEAH IT WORKS! Taking Enzo out
 /*
-  Count the number of "xx" in the given string. We'll say that overlapping is allowed, so "xxx" contains 2 "xx".
+Count the number of "xx" in the given string. We'll say that overlapping is allowed, so "xxx" contains 2 "xx".
 countXX("abcxx") → 1
 countXX("xxx") → 2
 countXX("xxxx") → 3 
@@ -430,11 +429,16 @@ has271([2, 7, 1]) → true
 */
 
 function has271(arr) {
+  // iterate over the array;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i + 1] == arr[i] + 5 && arr[i + 2] == arr[i] - 1) {
+    // if two after current index  is equal to the index + 5 && 2 after current index is equal to current index -1
+    if (arr[i + 1] === arr[i] + 5 && arr[i + 2] === arr[i] - 1) {
       return true;
     }
   }
   return false;
 }
 console.log(has271([2, 7, 1]));
+
+//////////////////////////////////////////////////////////
+/* END OF CODING BAT WARMUP 2 IN JAVASCRIPT */
