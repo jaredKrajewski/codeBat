@@ -65,14 +65,11 @@ makeOutWord("[[]]", "word") → "[[word]]"
 */
 
 function makeOutWord(outer, inner){
+  // returns first two chars of outer string + entire inner string + last two chars of outer string;
   return `${outer.substr(0,2)}${inner}${outer.substr(-2)}`
 }
 
-function makeOutWord(a,b){
-    return(a.substr(0, a.length - 2) + b + a.substr(2))
-  }
-
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /* 
 Given a string, return a new string made of 3 copies of the last 2
@@ -83,14 +80,8 @@ extraEnd("ab") → "ababab"
 extraEnd("Hi") → "HiHiHi"
  */
 
-function extraEnd(a){
-    let lastTwo = a.substring(a.length -2)
-    return (lastTwo + lastTwo + lastTwo)
-  }
-
-  // or 
-
 function extraEnd(a) {
+  // returns the last 2 chars repeated 3 times;
     return a.substr(-2).repeat(3);
   }
 
@@ -108,6 +99,7 @@ firstTwo("ab") → "ab"
 */
 
 function firstTwo(a){
+  // returns the first two chars of the string;
     return a.substring(0,2)
  }
 
@@ -123,6 +115,7 @@ firstHalf("abcdef") → "abc"
 */
 
 function firstHalf(a){
+  // returns the string from start to middle;
   return(a.substr(0 , a.length/2))
 }
 
@@ -138,6 +131,7 @@ withoutEnd("coding") → "odin"
 */
 
 function withoutEnd(a) {
+  // returns the string excluding the first and last chars;
   return a.substr(1, a.length - 2);
 }
 
@@ -155,17 +149,19 @@ comboString("aaa", "b") → "baaab"
 */
 
 function comboString(a, b) {
-  let aLength = a.length;
-  let bLength = b.length;
-  if (aLength > bLength) {
+  // if a's length is longer than b's lengthh;
+  if (a.length > b.length) {
+    // return b + a + b;
     return b + a + b;
   }
+  // otherwise return a + b + a;
   return a + b + a;
 }
 
 //OR
 
 function comboString(a, b) { 
+  // if a length is > b length return b + a + b otherwise return a + b + a;
   return a.length > b.length ? b + a + b : a + b + a;
 }
 console.log(comboString("hi", "Hello"));
@@ -182,6 +178,7 @@ nonStart("shotl", "java") → "hotlava"
 */
 
 function nonStart(a,b) {
+  // returns the two strings together without each first char;
   return a.substr(1) + b.substr(1);
  }
 
@@ -197,6 +194,7 @@ left2("Hi") → "Hi"
 */
 
 function left2(str){
+  // returns the string with the first 2 chars omit and added to the end;
   return str.substr(2, str.length - 2) + str.substr(0,2) 
 }
 
@@ -212,6 +210,7 @@ right2("Hi") → "Hi"
 */
 
 function right2(str){
+  // returns the strings last 2 chars + the beginning of the string excluding the last 2 chars;
   return str.substr(-2,2) + str.substr(0, str.length -2)
 }
 
@@ -227,6 +226,7 @@ theEnd("Hello", false) → "o"
 theEnd("oh", true) → "o"
 */
 
+// if bool is true return the first char, otherwise return the last char;
 const theEnd = (str, bool) => (bool ? str.charAt(0) : str.charAt(str.length));
 
 //////////////////////////////////////////////////////////
@@ -240,6 +240,7 @@ withouEnd2("abc") → "b"
 withouEnd2("ab") → ""
 */
 
+// return the string excluding the first and last char;
 const withouEnd2 = (str) => str.substr(1,str.length - 2)
 
 //////////////////////////////////////////////////////////
@@ -254,6 +255,7 @@ middleTwo("code") → "od"
 middleTwo("Practice") → "ct"
 */
 
+// returns the middle -1 char + the middle +1 char;
 const middleTwo = (str) =>
   str.substr(str.length / 2 - 1, 1) + str.substr(str.length / 2, 1);
 
@@ -266,6 +268,7 @@ endsLy("y") → false
 endsLy("oddy") → false
 */
 
+// returns false as "falsy" if the last 2 chars are not "ly";
 const endsLy = (str) => str.substr(-2) === "ly";
 
 //////////////////////////////////////////////////////////
@@ -278,6 +281,7 @@ nTwice("Hello", 2) → "Helo"
 nTwice("Chocolate", 3) → "Choate"
 nTwice("Chocolate", 1) → "Ce"
 */
+
 
 const nTwice = (str, n) => str.substr(0, n) + str.substr(str.length - n);
 
@@ -294,23 +298,9 @@ twoChar("java", 2) → "va"
 twoChar("java", 3) → "ja"
 */
 
-function twoChar(word, n) {
-  if (word.length == n + 1 || n < 0) {
-    return word.substr(0, 2);
-  } else return word.substr(n, n + 2);
+function twoChar(str, i){
+  return i <=2 ? str.substr(i,2) : str.substr(0, 2)
 }
-
-console.log(twoChar("java", 3));
-
-// or 
-
-function twoChar(word, n) {
-  return n < 2 || n > 2 
-    ? word.substr(0, 2) 
-    : word.substr(n, 2);
-}
-
-console.log(twoChar("java", 2));
 
 //////////////////////////////////////////////////////////
 
@@ -324,10 +314,8 @@ middleThree("solving") → "lvi"
 */
 
 function middleThree(word) {
-  return word.substr(word.length / 2 - 1, +3);
+  return word.substr(word.length / 2 - 1, 3);
 }
-
-console.log(middleThree("candy"));
 
 //////////////////////////////////////////////////////////
 
@@ -349,8 +337,6 @@ function hasBad(word) {
   return false;
 }
 
-console.log(hasBad("xxbadxx"));
-
 //////////////////////////////////////////////////////////
 
 /*
@@ -368,7 +354,6 @@ function atFirst(word) {
   }
   return word.substr(0, 1) + "@";
 }
-console.log(atFirst("h"));
 
 //////////////////////////////////////////////////////////
 
@@ -396,8 +381,6 @@ function lastChars(a, b) {
   return a.substr(0, 1) + b.substr(b.length - 1, 1);
 }
 
-console.log(lastChars("", "chars"));
-
 // or 
 
 function lastChars(a, b) {
@@ -408,10 +391,8 @@ function lastChars(a, b) {
   }
    return a.substr(0,1) + b.substr(0,1)
  }
- 
- console.log(lastChars("hi", ""));
 
- //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 /*
 Given two strings, append them together (known as "concatenation") 
@@ -431,8 +412,6 @@ function conCat(a, b) {
   return a + b;
 }
 
-console.log(conCat("abc", "efg"));
-
 //////////////////////////////////////////////////////////
 
 /*
@@ -450,8 +429,6 @@ function lastTwo(a) {
     .reverse()
     .join("");
 }
-
-console.log(lastTwo("cat"));
 
 //////////////////////////////////////////////////////////
 
@@ -474,8 +451,6 @@ function seeColor(a) {
   return "";
 }
 
-console.log(seeColor("bluexxxred"));
-
 // or 
 
 function seeColor(a) {
@@ -486,8 +461,6 @@ function seeColor(a) {
   }
   return ""
 }
-
-console.log(seeColor("bluexxxred"));
 
 //////////////////////////////////////////////////////////
 
@@ -507,15 +480,11 @@ function frontAgain(a) {
   return false;
 }
 
-console.log(frontAgain("ed"));
-
 // or 
 
 function frontAgain(a) {
   return a.substr(0, 2) === a.substr(-2)
  }
- 
- console.log(frontAgain("edited"));
 
 //////////////////////////////////////////////////////////
 
@@ -541,8 +510,6 @@ function minCat(a, b) {
   return a + b;
 }
 
-console.log(minCat("java", "Hello"));
-
 // or 
 
 function minCat(a, b) {
@@ -550,8 +517,6 @@ function minCat(a, b) {
     ? a.substr(a.length - b.length) + b
     : a + b.substr(b.length - a.length);
 }
-
-console.log(minCat("java", "Hello"));
 
 //////////////////////////////////////////////////////////
 
@@ -568,8 +533,6 @@ extraFront("H") → "HHH"
 function extraFront(a) {
   return a.substr(0, 2).repeat(3);
 }
-
-console.log(extraFront("Hello"));
 
 //////////////////////////////////////////////////////////
 
@@ -589,8 +552,6 @@ function without2(a) {
     ? a.substr(2) 
     : a;
 }
-
-console.log(without2("HelloHe"));
 
 //////////////////////////////////////////////////////////
 
@@ -615,8 +576,6 @@ function deFront(a) {
   return a.substr(2);
 }
 
-console.log(deFront("away"));
-
 //////////////////////////////////////////////////////////
 
 /*
@@ -639,8 +598,6 @@ function startWord(a, b) {
   return a.substr(0, 1);
 }
 
-console.log(startWord("hippo", "hi"));
-
 // or 
 
 function startWord(a, b) {
@@ -649,8 +606,6 @@ function startWord(a, b) {
   }
   return "";
 }
-
-console.log(startWord("hippo", "hi"));
 
 //////////////////////////////////////////////////////////
 
@@ -676,8 +631,6 @@ function withoutX(a) {
   return a;
 }
 
-console.log(withoutX("hxix"));
-
 // or 
 
 function withoutX(a) {
@@ -691,8 +644,6 @@ function withoutX(a) {
   }
   return a.substring(start, end);
 }
-
-console.log(withoutX("hxix"));
 
 //////////////////////////////////////////////////////////
 
@@ -717,7 +668,6 @@ function withoutX2(a) {
   }
   return a;
 }
-console.log(withoutX2("hxi"));
 
 //////////////////////////////////////////////////////////
 /* END OF CODINGBAT STRING 1 IN JAVASCRIPT */

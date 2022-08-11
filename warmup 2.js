@@ -12,7 +12,6 @@ function stringTimes(str, n){
   // returns the string repeated (n)*;
     return str.repeat(n)
   }
-  console.log(stringTimes("Hi", 2))
 
 //////////////////////////////////////////////////////////
 
@@ -29,7 +28,6 @@ function frontTimes(str, n){
   // returns the start of the string up to char 3 repeated (n)*;
     return str.substr(0,3).repeat(n) 
   }
-  console.log(frontTimes("Chocolate", 2))
 
 //////////////////////////////////////////////////////////
 
@@ -44,15 +42,15 @@ function countXX(str) {
   // var for count;
   let count = 0;
   // loop over the array 1 at a time;
-  for (i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     // if the str at index i + 2 is xx increment the count and continue;
-    if (str.substr(i, +2) == "xx") count++;
+    if (str.substr(i, +2) === "xx"){
+      count++;
+    } 
   }
   // return the count;
   return count;
 }
-
-console.log(countXX("abcxx"));
 
 //////////////////////////////////////////////////////////
 
@@ -63,16 +61,16 @@ doubleX("axaxax") → false
 doubleX("xxxxx") → true 
 */
 
+
 function doubleX(str){
   // loop over the string;
-    for (i = 0; i < str.length; i++){
+    for (let i = 0; i < str.length; i++){
       // if the index and the following = "xx" return true;
-      if(str.substr(i , i + 1) == 'xx')
+      if(str.substr(i , i + 1) === 'xx')
         return true;
       }
      return false;
    }
-   console.log(doubleX("axxbb"))
 
 //////////////////////////////////////////////////////////
 
@@ -86,7 +84,7 @@ stringBits("Heeololeo") → "Hello"
 function stringBits(str) {
   // variable with first letter of string;
   let string = str.charAt(0);
-  // loop over the string
+  // loop over the string skipping the first char;
   for (let i = 1; i < str.length; i++) {
     // if i %2 and === 0 (every other element), append it to the string;
     if (i % 2 === 0) {
@@ -95,7 +93,6 @@ function stringBits(str) {
   }
   return string;
 }
-console.log(stringBits("Heeololeo"));
 
 //OR
 
@@ -103,15 +100,14 @@ function stringBits(str){
   // empty string variable;
     let result = "";
     // loop over every other element of the string starting with the first;
-    for (i = 0; i < str.length; i += 2){
+    for (let i = 0; i < str.length; i += 2){
       // add the first element and every 2nd elemet to the string;
       result += str.charAt(i, i + 2)
     }
     return result;
   }
-  console.log(stringBits("heeololeo"))
 
-  //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
   
 /*
 Given a non-empty string like "Code" return a string like "CCoCodCode".
@@ -124,13 +120,12 @@ function stringSplosion(str) {
   // variable for result;
     let result = ""
     // loop over the array
-    for (i = 0; i < str.length; i++){
+    for (let i = 0; i < str.length; i++){
       // append the 0th index through the current index +1 to the result
       result += str.substr(0, i + 1)
     }
     return result
   }
-  console.log(stringSplosion("Code"))
 
 //////////////////////////////////////////////////////////
 
@@ -157,7 +152,6 @@ function last2(str){
  }
   return count;
 }
-console.log(last2("xaxxaxaxx"))
 
 //////////////////////////////////////////////////////////
 
@@ -180,7 +174,6 @@ function arrayCount9(arr) {
   });
   return count;
 }
-console.log(arrayCount9([1, 2, 9]));
 
 //////////////////////////////////////////////////////////
 
@@ -202,7 +195,6 @@ function arrayFront9(arr){
   }
   return false;
 }
-console.log(arrayFront9([1, 2, 2, 3, 9]))
 
 //////////////////////////////////////////////////////////
 
@@ -225,7 +217,6 @@ function array123(arr) {
   });
   return result;
 }
-console.log(array123([1, 1, 2, 3, 3]));
 
 //////////////////////////////////////////////////////////
 
@@ -252,7 +243,6 @@ function stringMatch(a, b) {
     }
     return count;
   }
-  console.log(stringMatch("xxcaazz", "xxbaaz"));
 
 //////////////////////////////////////////////////////////
 
@@ -279,7 +269,6 @@ stringX("xabxxxcdx") → "xabcdx"
   // return the array joined back as a string;
     return string.join("");
   }
-  console.log(stringX("xxHxix"));
 
   // OR
 
@@ -296,7 +285,6 @@ stringX("xabxxxcdx") → "xabcdx"
     // return the result with the last char of the original string;
     return result + str.substr(str.length - 1);
   }
-  console.log(stringX("xxHxix"));
   
 //////////////////////////////////////////////////////////
 
@@ -319,7 +307,6 @@ function altPairs(str) {
   }
   return string;
 }
-console.log(altPairs("chocolate"));
 
 //////////////////////////////////////////////////////////
 
@@ -333,21 +320,10 @@ stringYak("pakyak") → "pak"
 stringYak("yak123ya") → "123ya"
 */
 
-function stringYak(str) {
-  // variable for new string;
-  let string = "";
-  // loop over the input string;
-  for (let i = 0; i < str.length; i++) {
-    // if the char at str[i] is "y" and the char 2 index after is "k" increment by 3;
-    if (str.charAt(i) === "y" && str.charAt(i + 2) === "k") {
-      i += 3;
-    }
-    // push each letter to the string;
-    string += str[i];
-  }
-  return string;
-}
-console.log(stringYak("yak123ya"));
+function stringYak(str){
+  // returns the string with all regex of y.k replaced with nothing. (. is a wildcard char);
+  return str.replaceAll(/y.k/ig , "")
+ }
 
 //or 
 
@@ -365,8 +341,6 @@ function stringYak(str) {
   // returns the new array as a string;
   return string.join("");
 }
-
-console.log(stringYak("yak123ya"));
 
 //////////////////////////////////////////////////////////
 
@@ -391,7 +365,6 @@ function array667(arr) {
   }
   return count;
 }
-console.log(array667([6, 7, 2, 6]));
 
 //////////////////////////////////////////////////////////
 
@@ -414,7 +387,6 @@ function noTriples(arr) {
   }
   return true;
 }
-console.log(noTriples([1, 1, 1, 2, 2, 2, 1]));
 
 //////////////////////////////////////////////////////////
 
@@ -438,7 +410,6 @@ function has271(arr) {
   }
   return false;
 }
-console.log(has271([2, 7, 1]));
 
 //////////////////////////////////////////////////////////
 /* END OF CODING BAT WARMUP 2 IN JAVASCRIPT */
