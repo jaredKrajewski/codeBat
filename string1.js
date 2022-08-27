@@ -132,7 +132,7 @@ withoutEnd("coding") → "odin"
 
 function withoutEnd(a) {
   // returns the string excluding the first and last chars;
-  return a.substr(1, a.length - 2);
+  return a.substr(1, a.length - 1);
 }
 
 //////////////////////////////////////////////////////////
@@ -164,7 +164,6 @@ function comboString(a, b) {
   // if a length is > b length return b + a + b otherwise return a + b + a;
   return a.length > b.length ? b + a + b : a + b + a;
 }
-console.log(comboString("hi", "Hello"));
 
 //////////////////////////////////////////////////////////
 
@@ -282,7 +281,8 @@ nTwice("Chocolate", 3) → "Choate"
 nTwice("Chocolate", 1) → "Ce"
 */
 
-
+// takes in a string and a number, returns the string starting at 0 up to the number 
+// + the string from the end - number
 const nTwice = (str, n) => str.substr(0, n) + str.substr(str.length - n);
 
 //////////////////////////////////////////////////////////
@@ -298,9 +298,8 @@ twoChar("java", 2) → "va"
 twoChar("java", 3) → "ja"
 */
 
-function twoChar(str, i){
-  return i <=2 ? str.substr(i,2) : str.substr(0, 2)
-}
+// takes in a string and index, if the index is <= 2 return the first two chars if not the last 2;
+const twoChar = (str, i) => i <=2 ? str.substr(i,2) : str.substr(0, 2)
 
 //////////////////////////////////////////////////////////
 
@@ -313,9 +312,8 @@ middleThree("and") → "and"
 middleThree("solving") → "lvi"
 */
 
-function middleThree(word) {
-  return word.substr(word.length / 2 - 1, 3);
-}
+// takes in a str and returns the middle of the string up to 3 chars.
+const middleThree = (str) => str.substr(Math.floor(str.length / 2 - 1) , 3);
 
 //////////////////////////////////////////////////////////
 
@@ -330,12 +328,8 @@ hasBad("xbadxx") → true
 hasBad("xxbadxx") → false
 */
 
-function hasBad(word) {
-  if (word.substr(0, 3) === "bad" || word.substr(1, 3) === "bad") {
-    return true;
-  }
-  return false;
-}
+// takes in a str if the word "bad" starts at index 0 or 1 return true otherwise return false;
+const hasBad = (str) => str.substr(0, 3) === "bad" || str.substr(1, 3) === "bad" ? true : false;
 
 //////////////////////////////////////////////////////////
 
@@ -348,12 +342,9 @@ atFirst("hi") → "hi"
 atFirst("h") → "h@"
 */
 
-function atFirst(word) {
-  if (word.length >= 2) {
-    return word.substr(0, 2);
-  }
-  return word.substr(0, 1) + "@";
-}
+// takes in a str if the string length is 0 return "@@" if the length is 1 return the char + "@" 
+//otherwise return the first two index of str
+const atFirst = (word) => word.length === 0 ? "@@" : word.length === 1 ? word + "@" : word.substr(0,2)
 
 //////////////////////////////////////////////////////////
 
@@ -367,29 +358,36 @@ lastChars("yo", "java") → "ya"
 lastChars("hi", "") → "h@"
 */
 
+
 function lastChars(a, b) {
+  // if the first string is empty and the second string is empty return "@@";
   if (a.length === 0 && b.length === 0) {
     return "@@";
   }
+  // if a is empty return "@" + the last char of b;
   if (a.length === 0) {
-    return "@" + b.substr(b.length - 1, 1);
+    return "@" + b.charAt(b.length-1);
   }
+  // if b is empty return the first char of a and "@";
   if (b.length === 0) {
     return a.substr(0, 1) + "@";
   }
-
-  return a.substr(0, 1) + b.substr(b.length - 1, 1);
+  // otherwise return the first char of a + last char of b;
+  return a.substr(0, 1) + b.charAt(b.length-1);
 }
 
 // or 
 
-function lastChars(a, b) {
+const lastChars = (a, b)  => {
+  // if a is empty a = "@";
   if (a.length === 0){
     a = '@';
+    //if b is empty b = "@";
   } if (b.length === 0){
     b = '@'
   }
-   return a.substr(0,1) + b.substr(0,1)
+  // return the first char of a + the last char of b;
+   return a[0] + b[b.length-1]
  }
 
 //////////////////////////////////////////////////////////
@@ -406,7 +404,9 @@ conCat("abc", "") → "abc"
 */
 
 function conCat(a, b) {
-  if (a.substr(a.length - 1, 1) === b[0]) {
+  // if the last char of a is the same ast the first char of 0;
+  if (a[a.length -1] === b[0]) {
+    // return string a + string b starting at the second char;
     return a + b.substr(1);
   }
   return a + b;
@@ -424,10 +424,23 @@ lastTwo("ab") → "ba"
 */
 
 function lastTwo(a) {
+  // return a up to  the second to last char + the last char
+  console.log(a.substr(-2))
+  //return the string up to the last two chars + the last two chars reversed;
   return a.substr(0, a.length - 2) + a.substr(-2)
+  // splits the array into an array by each char;
     .split("")
+  // reverses the position of each char in the array;
     .reverse()
+  // returns the array into a string;
     .join("");
+}
+
+//OR
+
+const lastTwo = (str) => {
+  // return the string without the last two chars + the last char + the second to last char;
+  return str.substr(0,str.length -2) + str[str.length -1] + str[str.length -2]
 }
 
 //////////////////////////////////////////////////////////
@@ -442,23 +455,31 @@ seeColor("blueTimes") → "blue"
 */
 
 function seeColor(a) {
+  // if the first 3 chars = "red", return the string "red";
   if (a.substr(0, 3) == "red") {
-    return a.substr(0, 3);
+    return "red";
   }
+  // if the first 4 chars = "blue", return the string "blue";
   if (a.substr(0, 4) == "blue") {
-    return a.substr(0, 4);
+    return "blue";
   }
+  // otherwise return an empty string;
   return "";
 }
 
 // or 
 
 function seeColor(a) {
+  // if a starts with "red";
   if (a.startsWith("red")){
+    // return red;
     return "red"
+    // if a starts with "blue";
   } if (a.startsWith("blue")){
+    // returen blue;
     return "blue"
   }
+  // otherwise return an empty string;
   return ""
 }
 
@@ -474,15 +495,7 @@ frontAgain("ed") → true
 */
 
 function frontAgain(a) {
-  if (a.substr(0, 2) === a.substr(-2)) {
-    return true;
-  }
-  return false;
-}
-
-// or 
-
-function frontAgain(a) {
+  // if the first two chars are equal to the last two chars returns true;
   return a.substr(0, 2) === a.substr(-2)
  }
 
@@ -500,21 +513,21 @@ minCat("Hello", "java") → "ellojava"
 minCat("java", "Hello") → "javaello"
 */
 
-function minCat(a, b) {
-  if (a.length > b.length) {
-    return a.substr(a.length - b.length) + b;
-  }
-  if (a.length < b.length) {
-    return a + b.substr(b.length - a.length);
-  }
-  return a + b;
+function minCat(strA, strB){
+  // variable length represents the length of the shorter string;
+  let length = Math.min(strA.length,strB.length)
+  // return strA starting from the end - the length variable + strB starting from the end - the length variable;
+  return strA.substr(strA.length - length) + strB.substr(strB.length - length)
 }
 
 // or 
 
 function minCat(a, b) {
+  // if a is longer than b;
   return a.length > b.length
+  // return a counting from end - length of b + b;
     ? a.substr(a.length - b.length) + b
+    // otherwise return a + b counting from end - length of a;
     : a + b.substr(b.length - a.length);
 }
 
@@ -531,6 +544,7 @@ extraFront("H") → "HHH"
 */
 
 function extraFront(a) {
+  // repeats the first two chars 3 times;
   return a.substr(0, 2).repeat(3);
 }
 
